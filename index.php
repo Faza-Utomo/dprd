@@ -44,13 +44,18 @@
       <a href="index.php" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
+<<<<<<< HEAD
         <h1 class="sitename">ASPIRASI & PENGADUAN MASYARAKAT</h1>
+=======
+        <h1 class="sitename">HUMAS PROTOKOL</h1>
+>>>>>>> Home
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
           <li><a href="#about">About</a></li>
+<<<<<<< HEAD
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#team">Team</a></li>
@@ -71,13 +76,19 @@
               <li><a href="#">Dropdown 4</a></li>
             </ul>
           </li>
+=======
+          <li><a href="#services">Menu</a></li>
+>>>>>>> Home
           <li><a href="#contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
+<<<<<<< HEAD
 
       <a class="cta-btn" href="index.html#about">Get Started</a>
 
+=======
+>>>>>>> Home
     </div>
   </header>
 
@@ -89,11 +100,18 @@
       <img src="assets/img/hero-bg.png" alt="" data-aos="fade-in">
 
       <div class="container d-flex flex-column align-items-center">
+<<<<<<< HEAD
         <h2 data-aos="fade-up" data-aos-delay="100">PLAN. LAUNCH. GROW.</h2>
         <p data-aos="fade-up" data-aos-delay="200">We are team of talented designers making websites with Bootstrap</p>
         <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
           <a href="#about" class="btn-get-started">Get Started</a>
           <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+=======
+        <h2 data-aos="fade-up" data-aos-delay="100">SISTEM INFORMASI HUMAS PROTOKOL</h2>
+        <p data-aos="fade-up" data-aos-delay="200"><!-- isi something --></p>
+        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="#services" class="btn-get-started">Mulai</a>
+>>>>>>> Home
         </div>
       </div>
 
@@ -144,14 +162,20 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
+<<<<<<< HEAD
         <h2>Services</h2>
         <p>Featured Srvices<br></p>
+=======
+        <h2>Menu</h2>
+        <p>Menu Pengisian Media<br></p>
+>>>>>>> Home
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row gy-5">
 
+<<<<<<< HEAD
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
             <div class="service-item">
               <div class="img">
@@ -169,6 +193,8 @@
             </div>
           </div><!-- End Service Item -->
 
+=======
+>>>>>>> Home
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
             <div class="service-item">
               <div class="img">
@@ -179,9 +205,15 @@
                   <i class="bi bi-broadcast"></i>
                 </div>
                 <a href="service-details.html" class="stretched-link">
+<<<<<<< HEAD
                   <h3>Eosle Commodi</h3>
                 </a>
                 <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+=======
+                  <h3>FORMULIR MEDIA</h3>
+                </a>
+                <p>Bagian untuk pengisian formulir media</p>
+>>>>>>> Home
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -196,9 +228,15 @@
                   <i class="bi bi-easel"></i>
                 </div>
                 <a href="service-details.html" class="stretched-link">
+<<<<<<< HEAD
                   <h3>Ledo Markt</h3>
                 </a>
                 <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+=======
+                  <h3>Link Lainnya</h3>
+                </a>
+                <p>///</p>
+>>>>>>> Home
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -215,7 +253,11 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
+<<<<<<< HEAD
         <p>Necessitatibus eius consequatur</p>
+=======
+        <p></p>
+>>>>>>> Home
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -228,7 +270,11 @@
                 <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
                   <i class="bi bi-geo-alt"></i>
                   <h3>Address</h3>
+<<<<<<< HEAD
                   <p>A108 Adam Street, New York, NY 535022</p>
+=======
+                  <p>Jalan Raya Cijamil RT 03 RW 06, Kampung Cijamil, Ngamprah, Kec. Ngamprah</p>
+>>>>>>> Home
                 </div>
               </div><!-- End Info Item -->
 
@@ -236,7 +282,11 @@
                 <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
                   <i class="bi bi-telephone"></i>
                   <h3>Call Us</h3>
+<<<<<<< HEAD
                   <p>+1 5589 55488 55</p>
+=======
+                  <p>+62</p>
+>>>>>>> Home
                 </div>
               </div><!-- End Info Item -->
 
@@ -244,7 +294,11 @@
                 <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
                   <i class="bi bi-envelope"></i>
                   <h3>Email Us</h3>
+<<<<<<< HEAD
                   <p>info@example.com</p>
+=======
+                  <p>info@dprd.com</p>
+>>>>>>> Home
                 </div>
               </div><!-- End Info Item -->
 
@@ -297,6 +351,7 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
+<<<<<<< HEAD
             <span class="sitename">Dewi</span>
           </a>
           <div class="footer-contact pt-3">
@@ -304,6 +359,15 @@
             <p>New York, NY 535022</p>
             <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
             <p><strong>Email:</strong> <span>info@example.com</span></p>
+=======
+            <span class="sitename">HUMAS PROTOKOL</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Jalan Raya Cijamil RT 03 RW 06</p>
+            <p>Kampung Cijamil, Ngamprah, Kec. Ngamprah,</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+62</span></p>
+            <p><strong>Email:</strong> <span>info@dprd.com</span></p>
+>>>>>>> Home
           </div>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -335,6 +399,7 @@
           </ul>
         </div>
 
+<<<<<<< HEAD
         <div class="col-lg-4 col-md-12 footer-newsletter">
           <h4>Our Newsletter</h4>
           <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
@@ -346,17 +411,27 @@
           </form>
         </div>
 
+=======
+>>>>>>> Home
       </div>
     </div>
 
     <div class="container copyright text-center mt-4">
+<<<<<<< HEAD
       <p>© <span>Copyright</span> <strong class="px-1 sitename">Dewi</strong> <span>All Rights Reserved</span></p>
+=======
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">FajarDJ & Naufal Faza</strong> <span>All Rights Reserved</span></p>
+>>>>>>> Home
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you've purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+<<<<<<< HEAD
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a href=“https://themewagon.com>ThemeWagon
+=======
+        Designed by <a href="https://www.instagram.com/_fajardj/">FajarDJ</a> And <a href=“https://www.instagram.com/naufal.paja/>Naufal Faza
+>>>>>>> Home
       </div>
     </div>
 
