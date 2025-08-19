@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - Dewi Bootstrap Template</title>
+  <title>SISTEM INFORMASI HUMAS PROTOKOL</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -95,7 +95,7 @@
                 magna aliqua.
               </p>
               <ul>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
+                <li><i class="bi bi-check-circle-fill"></i> <span>Ullamco laboris nisi ut info ex ea commodo consequat.</span></li>
                 <li><i class="bi bi-check-circle-fill"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
                 <li><i class="bi bi-check-circle-fill"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
               </ul>
@@ -212,35 +212,7 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="4" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.10686550714!2d107.51728356487622!3d-6.835396826866748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e36dbb0cc061%3A0x9aec9b1ec9d25e6!2sDPRD%20kabupaten%20Bandung%20Barat!5e0!3m2!1sid!2sid!4v1755573333461!5m2!1sid!2sid" width="600" height="370" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div><!-- End Contact Form -->
 
         </div>
@@ -284,17 +256,6 @@
           </ul>
         </div>
 
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
-
       </div>
     </div>
 
@@ -304,8 +265,8 @@
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you've purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://www.instagram.com/_fajardj/">FajarDJ</a> And <a href=“https://www.instagram.com/naufal.paja/>Naufal Faza
+        <!-- Pur  chase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="https://www.instagram.com/_fajardj/">FajarDJ</a> And <a href="https://www.instagram.com/naufal.paja/">Naufal Faza</a>
       </div>
     </div>
 

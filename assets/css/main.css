@@ -1775,6 +1775,44 @@ section,
 /*--------------------------------------------------------------
 # Service Details Section
 --------------------------------------------------------------*/
+
+.service-details .php-email-form input[type=text],
+.service-details .php-email-form input[type=email],
+.service-details .php-email-form textarea {
+  font-size: 14px;
+  padding: 10px 15px;
+  box-shadow: none;
+  border-radius: 0;
+  color: var(--default-color);
+  background-color: var(--surface-color);
+  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.service-details .php-email-form input[type=text]:focus,
+.service-details .php-email-form input[type=email]:focus,
+.service-details .php-email-form textarea:focus {
+  border-color: var(--accent-color);
+}
+
+.service-details .php-email-form input[type=text]::placeholder,
+.service-details .php-email-form input[type=email]::placeholder,
+.service-details .php-email-form textarea::placeholder {
+  color: color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
+.service-details .php-email-form button[type=submit] {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  border: 0;
+  padding: 10px 30px;
+  transition: 0.4s;
+  border-radius: 50px;
+}
+
+.service-details .php-email-form button[type=submit]:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
 .service-details .services-list {
   background-color: var(--surface-color);
   padding: 10px 30px;
