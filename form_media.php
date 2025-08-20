@@ -77,35 +77,46 @@
     <section id="form" class="contact section">
       <center>
         <div class="col-lg-6">
-          <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+          <form action="simpan_pengajuan_media.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
             <div class="row gy-4">
 
               <div class="col-md-6">
-                <input type="text" name="name" class="form-control" placeholder="Nama Media" required="">
+                <input type="text" name="nama_perusahaan" class="form-control" placeholder="Nama Perusahaan" required>
               </div>
 
-              <div class="col-md-6 ">
-                <input type="email" class="form-control" name="email" placeholder="Email" required="">
+              <div class="col-md-6">
+                <select name="pengajuan_langganan" class="form-control" required>
+                  <option value="">-- Pilih Pengajuan Langganan --</option>
+                  <option value="Tabloid">Tabloid</option>
+                  <option value="Majalah">Majalah</option>
+                  <option value="BeritaOnline">Berita Online</option>
+                  <option value="MediaOnline">Media Online</option>
+                  <option value="Publikasi">Publikasi</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="nama_wartawan" placeholder="Nama Wartawan" required>
+              </div>
+
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="harga" placeholder="Harga" required>
+              </div>
+
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="kontak" placeholder="Nomor Kontak" required>
               </div>
 
               <div class="col-md-12">
-                <input type="text" class="form-control" name="subject" placeholder="Mangsud" required="">
-              </div>
-
-              <div class="col-md-12">
-                <textarea class="form-control" name="message" rows="4" placeholder="Pesan" required=""></textarea>
+                <textarea class="form-control" name="keterangan" rows="4" placeholder="Keterangan"></textarea>
               </div>
 
               <div class="col-md-12 text-center">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                <button type="submit">Send Message</button>
+                <button type="submit">Kirim Pengajuan</button>
               </div>
-
             </div>
           </form>
+
         </div><!-- End Contact Form -->
       </center>
 
