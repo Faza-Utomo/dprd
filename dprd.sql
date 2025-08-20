@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2025 at 05:16 AM
+-- Generation Time: Aug 20, 2025 at 09:03 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -65,6 +65,22 @@ CREATE TABLE `pengaduan` (
   `kategori` varchar(50) NOT NULL,
   `lampiran` varchar(50) NOT NULL,
   `tanggal` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengajuan_media`
+--
+
+CREATE TABLE `pengajuan_media` (
+  `id_pengajuan` int(11) NOT NULL,
+  `nama_perusahaan` varchar(50) NOT NULL,
+  `pengajuan_langganan` varchar(50) NOT NULL,
+  `nama_wartawan` varchar(50) NOT NULL,
+  `harga` int(15) NOT NULL,
+  `kontak` int(14) NOT NULL,
+  `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -132,6 +148,12 @@ ALTER TABLE `pengaduan`
   ADD PRIMARY KEY (`id_pengaduan`);
 
 --
+-- Indexes for table `pengajuan_media`
+--
+ALTER TABLE `pengajuan_media`
+  ADD PRIMARY KEY (`id_pengajuan`);
+
+--
 -- Indexes for table `tanggapan_aspirasi`
 --
 ALTER TABLE `tanggapan_aspirasi`
@@ -157,7 +179,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `aspirasi`
@@ -170,6 +192,12 @@ ALTER TABLE `aspirasi`
 --
 ALTER TABLE `pengaduan`
   MODIFY `id_pengaduan` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pengajuan_media`
+--
+ALTER TABLE `pengajuan_media`
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tanggapan_aspirasi`
