@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+if ( !isset($_SESSION["id_admin"])) {
+  	header("Location: login_form/formlogin.php");
+  	exit;
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,8 +61,9 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#services">Menu</a></li>
+          <li><a href="#menu">Menu</a></li>
           <li><a href="#contact">Contact</a></li>
+          <a href="login_form/logout.php" class="btn btn-primary btn-sm">Sign Out</a>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -69,14 +81,14 @@
         <h2 data-aos="fade-up" data-aos-delay="100">SISTEM INFORMASI HUMAS PROTOKOL</h2>
         <p data-aos="fade-up" data-aos-delay="200"><!-- isi something --></p>
         <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="#services" class="btn-get-started">Mulai</a>
+          <a href="#menu" class="btn-get-started">Mulai</a>
         </div>
       </div>
 
     </section><!-- /Hero Section -->
 
     <!-- Services Section -->
-    <section id="services" class="services section">
+    <section id="menu" class="services section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
