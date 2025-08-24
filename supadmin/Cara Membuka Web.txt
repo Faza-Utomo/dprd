@@ -1,0 +1,3 @@
+CARA MEMBUKA WEB : 
+1. import file sql yang bernama dbpenjualan.sql di phpmyadmin.
+2. buka localhost/AdminLTE maka akan otomatis ke loginform
