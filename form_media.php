@@ -77,8 +77,12 @@
     <section id="form" class="contact section">
       <center>
         <div class="col-lg-6">
-          <form action="simpan_pengajuan_media.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+          <form action="proses_pengajuan.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
             <div class="row gy-4">
+
+              <div class="col-md-6">
+                <input type="text" name="nama_media" class="form-control" placeholder="Nama Media" required>
+              </div>
 
               <div class="col-md-6">
                 <input type="text" name="nama_perusahaan" class="form-control" placeholder="Nama Perusahaan" required>
@@ -92,6 +96,7 @@
                   <option value="BeritaOnline">Berita Online</option>
                   <option value="MediaOnline">Media Online</option>
                   <option value="Publikasi">Publikasi</option>
+                  <option value="Lainnya">Lainnya...</option>
                 </select>
               </div>
 
@@ -109,6 +114,9 @@
 
               <div class="col-md-6">
                 <input type="text" class="form-control" name="norekening" placeholder="Nomor Rekening" required>
+              </div>
+
+              <div class="col-md-6">
               </div>
 
               <div class="col-md-6">
