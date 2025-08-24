@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2025 at 09:03 AM
+-- Generation Time: Aug 21, 2025 at 06:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,37 +35,12 @@ CREATE TABLE `admin` (
   `no_hp` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `aspirasi`
+-- Dumping data for table `admin`
 --
 
-CREATE TABLE `aspirasi` (
-  `id_aspirasi` int(5) NOT NULL,
-  `id_user` int(5) NOT NULL,
-  `judul` varchar(100) NOT NULL,
-  `deskripsi` text NOT NULL,
-  `kategori` varchar(50) NOT NULL,
-  `lampiran` varchar(50) NOT NULL,
-  `tanggal` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pengaduan`
---
-
-CREATE TABLE `pengaduan` (
-  `id_pengaduan` int(5) NOT NULL,
-  `id_user` int(5) NOT NULL,
-  `judul` varchar(10) NOT NULL,
-  `deskripsi` text NOT NULL,
-  `kategori` varchar(50) NOT NULL,
-  `lampiran` varchar(50) NOT NULL,
-  `tanggal` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `no_hp`) VALUES
+(2, 'Asep Sumenep', 'SumenepAsep@gmail.com', 'admin1234', '0812345678');
 
 -- --------------------------------------------------------
 
@@ -80,49 +55,13 @@ CREATE TABLE `pengajuan_media` (
   `nama_wartawan` varchar(50) NOT NULL,
   `harga` int(15) NOT NULL,
   `kontak` int(14) NOT NULL,
+  `nomor_rekening` int(16) NOT NULL,
+  `ktp_pemilik_perusahaan` varchar(255) NOT NULL,
+  `npwp_perusahaan` varchar(255) NOT NULL,
+  `kta_wartawan` varchar(255) NOT NULL,
+  `cv_perusahaan` varchar(255) NOT NULL,
+  `surat_penawaran_kerjasama` varchar(255) NOT NULL,
   `keterangan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tanggapan_aspirasi`
---
-
-CREATE TABLE `tanggapan_aspirasi` (
-  `id_ta` int(5) NOT NULL,
-  `id_aspirasi` int(5) NOT NULL,
-  `id_admin` int(5) NOT NULL,
-  `isi_tanggapan` text NOT NULL,
-  `tanggal_tanggapan` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tanggapan_pengaduan`
---
-
-CREATE TABLE `tanggapan_pengaduan` (
-  `id_tp` int(5) NOT NULL,
-  `id_pengaduan` int(5) NOT NULL,
-  `id_admin` int(5) NOT NULL,
-  `isi_tanggapan` text NOT NULL,
-  `tanggal_tanggapan` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `id_user` int(5) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `password` varchar(15) NOT NULL,
-  `no_hp` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -136,40 +75,10 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `aspirasi`
---
-ALTER TABLE `aspirasi`
-  ADD PRIMARY KEY (`id_aspirasi`);
-
---
--- Indexes for table `pengaduan`
---
-ALTER TABLE `pengaduan`
-  ADD PRIMARY KEY (`id_pengaduan`);
-
---
 -- Indexes for table `pengajuan_media`
 --
 ALTER TABLE `pengajuan_media`
   ADD PRIMARY KEY (`id_pengajuan`);
-
---
--- Indexes for table `tanggapan_aspirasi`
---
-ALTER TABLE `tanggapan_aspirasi`
-  ADD PRIMARY KEY (`id_ta`);
-
---
--- Indexes for table `tanggapan_pengaduan`
---
-ALTER TABLE `tanggapan_pengaduan`
-  ADD PRIMARY KEY (`id_tp`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -179,43 +88,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `aspirasi`
---
-ALTER TABLE `aspirasi`
-  MODIFY `id_aspirasi` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pengaduan`
---
-ALTER TABLE `pengaduan`
-  MODIFY `id_pengaduan` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pengajuan_media`
 --
 ALTER TABLE `pengajuan_media`
   MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tanggapan_aspirasi`
---
-ALTER TABLE `tanggapan_aspirasi`
-  MODIFY `id_ta` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tanggapan_pengaduan`
---
-ALTER TABLE `tanggapan_pengaduan`
-  MODIFY `id_tp` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

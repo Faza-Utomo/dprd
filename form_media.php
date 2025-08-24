@@ -107,6 +107,35 @@
                 <input type="text" class="form-control" name="kontak" placeholder="Nomor Kontak" required>
               </div>
 
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="norekening" placeholder="Nomor Rekening" required>
+              </div>
+
+              <div class="col-md-6">
+                <label>KTP Pemilik Perusahaan</label>
+                <input type="file" name="ktp_pemilik_perusahaan" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+              </div>
+
+              <div class="col-md-6">
+                <label>NPWP Perusahaan</label>
+                <input type="file" name="npwp_perusahaan" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+              </div>
+
+              <div class="col-md-6">
+                <label>KTA Wartawan</label>
+                <input type="file" name="kta_wartawan" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+              </div>
+
+              <div class="col-md-6">
+                <label>CV Perusahaan</label>
+                <input type="file" name="cv_perusahaan" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+              </div>
+
+              <div class="col-md-6">
+                <label>Surat Penawaran Kerjasama</label>
+                <input type="file" name="surat_penawaran_kerjasama" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+              </div>
+
               <div class="col-md-12">
                 <textarea class="form-control" name="keterangan" rows="4" placeholder="Keterangan"></textarea>
               </div>
