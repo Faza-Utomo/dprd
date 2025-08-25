@@ -14,7 +14,7 @@ $norekening             = $_POST['norekening'];
 $keterangan             = $_POST['keterangan'];
 
 // Buat folder utama "File Media" jika belum ada
-$base_dir = "File Media";
+$base_dir = "File_Media";
 if (!is_dir($base_dir)) {
     mkdir($base_dir, 0777, true);
 }
