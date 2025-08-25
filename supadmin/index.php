@@ -2,7 +2,7 @@
 
 session_start();
 
-if ( !isset($_SESSION["id_admin"])) {
+if ( !isset($_SESSION["id_supadmin"])) {
   	header("Location: login_form/formlogin.php");
   	exit;
   }

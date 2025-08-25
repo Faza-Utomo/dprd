@@ -2,7 +2,7 @@
 session_start();
 include '../../koneksi.php';
 
-$sess_admin = $_SESSION['id_admin'];
+$sess_admin = $_SESSION['id_supadmin'];
 
 if (isset($sess_admin)) {
   session_destroy();

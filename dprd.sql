@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2025 at 05:53 AM
+-- Generation Time: Aug 25, 2025 at 04:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,18 +45,18 @@ INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `no_hp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media`
+-- Table structure for table `pengajuan_media`
 --
 
-CREATE TABLE `media` (
+CREATE TABLE `pengajuan_media` (
   `id_pengajuan` int(11) NOT NULL,
   `nama_media` varchar(50) NOT NULL,
   `nama_perusahaan` varchar(50) NOT NULL,
   `pengajuan_langganan` varchar(50) NOT NULL,
   `nama_wartawan` varchar(50) NOT NULL,
-  `harga` varchar(15) NOT NULL,
-  `kontak` varchar(14) NOT NULL,
-  `nomor_rekening` varchar(16) NOT NULL,
+  `harga` int(15) NOT NULL,
+  `kontak` int(14) NOT NULL,
+  `nomor_rekening` int(16) NOT NULL,
   `ktp_pemilik_perusahaan` varchar(255) NOT NULL,
   `npwp_perusahaan` varchar(255) NOT NULL,
   `kta_wartawan` varchar(255) NOT NULL,
@@ -91,9 +91,9 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `media`
+-- Indexes for table `pengajuan_media`
 --
-ALTER TABLE `media`
+ALTER TABLE `pengajuan_media`
   ADD PRIMARY KEY (`id_pengajuan`);
 
 --
@@ -113,9 +113,9 @@ ALTER TABLE `admin`
   MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `media`
+-- AUTO_INCREMENT for table `pengajuan_media`
 --
-ALTER TABLE `media`
+ALTER TABLE `pengajuan_media`
   MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT;
 
 --

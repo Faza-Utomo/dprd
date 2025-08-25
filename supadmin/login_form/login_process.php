@@ -1,18 +1,18 @@
 <?php
 include '../../koneksi.php';
 
-$username = $_POST['username'];
+$email = $_POST['email'];
 $password = $_POST['password'];
 
-$check = mysqli_query($koneksi , "SELECT * FROM logadmin WHERE username='$username' and password='$password'") or die(mysqli_error());
+$check = mysqli_query($koneksi , "SELECT * FROM supadmin WHERE email='$email' and password='$password'") or die(mysqli_error());
 
 if (mysqli_num_rows($check) >= 1) {
   while($row = mysqli_fetch_array($check)) {
     session_start();
 
-    $_SESSION['id_admin'] = $row['id_admin'];
+    $_SESSION['id_supadmin'] = $row['id_supadmin'];
     ?>
-    <script>alert("Selamat Datang <?= $row['nama_admin']; ?> Kamu Telah Berhasil Login!!!");
+    <script>alert("Selamat Datang <?= $row['nama']; ?> Kamu Telah Berhasil Login!!!");
 
     window.location.href="../index.php"</script>
     <?php
