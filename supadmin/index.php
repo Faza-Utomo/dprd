@@ -14,7 +14,7 @@ if ( !isset($_SESSION["id_supadmin"])) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ADMIN KANG RESTO</title>
+  <title>SUPER ADMIN HUMAS PROTOKOL</title>
   <!-- untuk mengganti icon web -->
   <link rel="icon" href="">
   <!-- Tell the browser to be responsive to screen width -->
@@ -58,9 +58,9 @@ if ( !isset($_SESSION["id_supadmin"])) {
     <!-- Logo -->
     <a href="index.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>K</b>RST</span>
+      <span class="logo-mini"><b>SPR</b>ADM</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Home </b>Kang Resto</span>
+      <span class="logo-lg"><b>Home </b>Super Admin </span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -92,7 +92,7 @@ if ( !isset($_SESSION["id_supadmin"])) {
           <img src="dist/img/admin.jpg" class="img-circle" alt="User Image" height="160px" width="160px">
         </div>
         <div class="pull-left info">
-          <p>Admin</p>
+          <p>Super Admin</p>
           <a href="#"><i class="fa fa-circle text-success"></i> online</a>
         </div>
       </div>
@@ -183,14 +183,14 @@ if ( !isset($_SESSION["id_supadmin"])) {
     <section class="content">
       <br>
       <center>
-        <h1>SELAMAT DATANG DI WEBSITE ADMIN KANG RESTO</h1>
+        <h1>SELAMAT DATANG DI WEBSITE SUPER ADMIN HUMAS PROTOKOL</h1>
       </center>
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; Kelompok 7. </strong> Informatika
+    <strong>Copyright &copy; FajarDJ & Naufal Faza. </strong> Informatika
   </footer>
 
   <!-- Add the sidebar's background. This div must be placed
