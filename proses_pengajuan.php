@@ -12,6 +12,7 @@ $harga                  = $_POST['harga'];
 $kontak                 = $_POST['kontak'];
 $norekening             = $_POST['norekening'];
 $keterangan             = $_POST['keterangan'];
+$status                 = $_POST['status'];
 
 // Buat folder utama "File Media" jika belum ada
 $base_dir = "File_Media";
@@ -44,25 +45,33 @@ $kta_wartawan               = uploadFile("kta_wartawan", $folder_media);
 $cv_perusahaan              = uploadFile("cv_perusahaan", $folder_media);
 $surat_penawaran_kerjasama  = uploadFile("surat_penawaran_kerjasama", $folder_media);
 
-// Simpan data ke database
+// Simpan data ke database (id_pengajuan auto increment, jadi tidak dimasukkan)
 $sql = "INSERT INTO media
-        (nama_media, nama_perusahaan, pengajuan_langganan, nama_wartawan, harga, kontak, norekening,
-        ktp_pemilik_perusahaan, npwp_perusahaan, kta_wartawan, cv_perusahaan, surat_penawaran_kerjasama, keterangan)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    (nama_media, nama_perusahaan, pengajuan_langganan, nama_wartawan, harga, kontak, norekening,
+    ktp_pemilik_perusahaan, npwp_perusahaan, kta_wartawan, cv_perusahaan, surat_penawaran_kerjasama, keterangan, status)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-$stmt = $conn->prepare($sql);
+$stmt = $koneksi->prepare($sql);
+
+if (!$stmt) {
+    die("Prepare failed: " . $koneksi->error);
+}
+
 $stmt->bind_param(
-    "sssssssssssss",
+    "ssssssssssssss", // i = integer (harga), s = string
     $nama_media, $nama_perusahaan, $pengajuan_langganan, $nama_wartawan, $harga, $kontak, $norekening,
-    $ktp_pemilik_perusahaan, $npwp_perusahaan, $kta_wartawan, $cv_perusahaan, $surat_penawaran_kerjasama, $keterangan
+    $ktp_pemilik_perusahaan, $npwp_perusahaan, $kta_wartawan, $cv_perusahaan, $surat_penawaran_kerjasama,
+    $keterangan, $status
 );
 
 if ($stmt->execute()) {
     echo "<script>alert('Pengajuan berhasil disimpan!'); window.location.href='index.php';</script>";
 } else {
-    echo "Error: " . $stmt->error;
+    echo "Query gagal: " . $stmt->error;
+    var_dump($_POST);
+    var_dump($_FILES);
 }
 
 $stmt->close();
-$conn->close();
+$koneksi->close();
 ?>

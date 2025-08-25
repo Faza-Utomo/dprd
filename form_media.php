@@ -77,8 +77,11 @@
     <section id="form" class="contact section">
       <center>
         <div class="col-lg-6">
-          <form action="proses_pengajuan.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+          <form action="proses_pengajuan.php" method="post" enctype="multipart/form-data" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
             <div class="row gy-4">
+
+              <!-- id_pengajuan tidak perlu diisi manual -->
+              <!-- <input type="hidden" name="id_pengajuan"> -->
 
               <div class="col-md-6">
                 <input type="text" name="nama_media" class="form-control" placeholder="Nama Media" required>
@@ -116,8 +119,7 @@
                 <input type="text" class="form-control" name="norekening" placeholder="Nomor Rekening" required>
               </div>
 
-              <div class="col-md-6">
-              </div>
+              <div class="col-md-6"></div>
 
               <div class="col-md-6">
                 <label>KTP Pemilik Perusahaan</label>
@@ -148,11 +150,14 @@
                 <textarea class="form-control" name="keterangan" rows="4" placeholder="Keterangan"></textarea>
               </div>
 
+              <input type="hidden" name="status" value="Kesempatan Edit">
+
               <div class="col-md-12 text-center">
                 <button type="submit">Kirim Pengajuan</button>
               </div>
             </div>
           </form>
+
 
         </div><!-- End Contact Form -->
       </center>
