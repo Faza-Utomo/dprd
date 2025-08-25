@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2025 at 06:42 PM
+-- Generation Time: Aug 25, 2025 at 04:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `no_hp`) VALUES
-(2, 'Asep Sumenep', 'SumenepAsep@gmail.com', 'admin1234', '0812345678');
+(1, 'Muhammad Fajar', 'fajar@gmail.com', 'fajar123', '089741021');
 
 -- --------------------------------------------------------
 
@@ -50,6 +50,7 @@ INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `no_hp`) VALUES
 
 CREATE TABLE `pengajuan_media` (
   `id_pengajuan` int(11) NOT NULL,
+  `nama_media` varchar(50) NOT NULL,
   `nama_perusahaan` varchar(50) NOT NULL,
   `pengajuan_langganan` varchar(50) NOT NULL,
   `nama_wartawan` varchar(50) NOT NULL,
@@ -61,7 +62,22 @@ CREATE TABLE `pengajuan_media` (
   `kta_wartawan` varchar(255) NOT NULL,
   `cv_perusahaan` varchar(255) NOT NULL,
   `surat_penawaran_kerjasama` varchar(255) NOT NULL,
-  `keterangan` text NOT NULL
+  `keterangan` text NOT NULL,
+  `status` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supadmin`
+--
+
+CREATE TABLE `supadmin` (
+  `id_supadmin` int(5) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(15) NOT NULL,
+  `no_hp` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -81,6 +97,12 @@ ALTER TABLE `pengajuan_media`
   ADD PRIMARY KEY (`id_pengajuan`);
 
 --
+-- Indexes for table `supadmin`
+--
+ALTER TABLE `supadmin`
+  ADD PRIMARY KEY (`id_supadmin`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -95,6 +117,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `pengajuan_media`
   MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `supadmin`
+--
+ALTER TABLE `supadmin`
+  MODIFY `id_supadmin` int(5) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
