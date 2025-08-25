@@ -40,19 +40,23 @@
 
     <form action="insertakun.php" method="post">
       <div class="form-group has-feedback">
-        <input type="hidden" class="form-control" placeholder="ID" name="id_admin">
+        <input type="hidden" class="form-control" placeholder="ID" name="id_supadmin">
         <span class="glyphicon glyphicon-id form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Nama Lengkap Admin" name="nama_admin">
+        <input type="text" class="form-control" placeholder="Nama Lengkap Super Admin" name="nama">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Username" name="username">
+        <input type="email" class="form-control" placeholder="Email" name="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Password" name="password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="No. Handphone" name="no_hp">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
