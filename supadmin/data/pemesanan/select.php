@@ -190,12 +190,19 @@ if ( !isset($_SESSION["id_admin"])) {
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>No. Pesanan</th>
-                    <th>ID Customer</th>
-                    <th>No. Meja</th>
-                    <th>Kode Menu</th>
-                    <th>Banyak Pesanan</th>
-                    <th colspan="2">Aksi</th>
+                    <th>Nama Media</th>
+                    <th>Nama Perusahaan</th>
+                    <th>Pengajuan Langganan</th>
+                    <th>Nama Wartawan</th>
+                    <th>Harga</th>
+                    <th>Nomor Kontak</th>
+                    <th>Nomor Rekening</th>
+                    <th>KTP Pemilik Perusahaan</th>
+                    <th>NPWP Perusahaan</th>
+                    <th>KTA Wartawan</th>
+                    <th>CV Perusahaan</th>
+                    <th>Surat Penawaran Kerjasama</th>
+                    <th colspan="2">Status Kerjasama</th>
                   </tr>
                   </thead>
                   <tbody>
