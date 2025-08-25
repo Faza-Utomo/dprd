@@ -77,7 +77,7 @@
     <section id="form" class="contact section">
       <center>
         <div class="col-lg-6">
-          <form action="proses_pengajuan.php" method="post" enctype="multipart/form-data" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+          <form action="proses_pengajuan.php" method="post" enctype="multipart/form-data" data-aos="fade-up" data-aos-delay="500">
             <div class="row gy-4">
 
               <!-- id_pengajuan tidak perlu diisi manual -->
@@ -153,7 +153,7 @@
               <input type="hidden" name="status" value="Kesempatan Edit">
 
               <div class="col-md-12 text-center">
-                <button type="submit">Kirim Pengajuan</button>
+                <button type="submit" class="btn btn-primary">Kirim Pengajuan</button>
               </div>
             </div>
           </form>
@@ -223,7 +223,6 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
