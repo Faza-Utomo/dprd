@@ -99,73 +99,27 @@ if ( !isset($_SESSION["id_supadmin"])) {
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-link"></i> <span>Pemesanan</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+          <a href="#"><i class="fa fa-link"></i> <span>Persetujuan Media</span>
+            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="data/pemesanan/select.php"><i class="fa fa-table"></i> Laporan Data</a></li>
+            <li><a href="data/pemesanan/select.php"><i class="fa fa-table"></i> Data Persetujuan</a></li>
           </ul>
         </li>
         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-link"></i> <span>Transaksi</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+          <a href="#"><i class="fa fa-link"></i> <span>Rekap Harian</span>
+            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="data/transaksi/select.php"><i class="fa fa-table"></i> Laporan Data</a></li>
-            <li><a href="data/transaksi/User/inputuser.php"><i class="fa fa-plus"></i> Tambah Data</a></li>
+            <li><a href="data/transaksi/select.php"><i class="fa fa-table"></i>Data Rekap Harian</a></li>
           </ul>
         </li>
         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-link"></i> <span>Menu</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+          <a href="#"><i class="fa fa-link"></i> <span>Rekap Bulanan</span>
+            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="data/menu/select.php"><i class="fa fa-table"></i> Laporan Data</a></li>
-            <li><a href="data/menu/User/inputuser.php"><i class="fa fa-plus"></i> Tambah Data</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-link"></i> <span>Meja</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="data/meja/select.php"><i class="fa fa-table"></i> Laporan Data</a></li>
-            <li><a href="data/meja/User/inputuser.php"><i class="fa fa-plus"></i> Tambah Data</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-link"></i> <span>Kasir</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="data/kasir/select.php"><i class="fa fa-table"></i> Laporan Data</a></li>
-            <li><a href="data/kasir/User/inputuser.php"><i class="fa fa-plus"></i> Tambah Data</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-link"></i> <span>Customer</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="data/customer/select.php"><i class="fa fa-table"></i> Laporan Data</a></li>
+            <li><a href="data/menu/select.php"><i class="fa fa-table"></i>Data Rekap Bulanan</a></li>
           </ul>
         </li>
       </ul>
