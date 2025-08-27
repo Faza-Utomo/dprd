@@ -81,6 +81,7 @@
             <thead>
             <tr>
               <th>No</th>
+              <th>ID Pengajuan</th>
               <th>Nama Media</th>
               <th>Nama Perusahaan</th>
               <th>Pengajuan Langganan</th>
