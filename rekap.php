@@ -89,13 +89,6 @@
               <th>Harga</th>
               <th>Nomor Kontak</th>
               <th>Nomor Rekening</th>
-              <th>KTP Pemilik Perusahaan</th>
-              <th>NPWP Perusahaan</th>
-              <th>KTA Wartawan</th>
-              <th>CV Perusahaan</th>
-              <th>Surat Penawaran Kerjasama</th>
-              <th>Status Kerjasama</th>
-              <th colspan="2">Aksi</th>
             </tr>
             </thead>
             <tbody>
@@ -115,6 +108,37 @@
                     <td><?php echo $d['harga']; ?></td>
                     <td><?php echo $d['kontak']; ?></td>
                     <td><?php echo $d['nomor_rekening']; ?></td>
+                  </tr>
+                  <?php
+                }
+                  ?>
+            </tbody>
+          </table>
+          <table id="example2" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+              <th>No</th>
+              <th>ID Pengajuan</th>
+              <th>KTP Pemilik Perusahaan</th>
+              <th>NPWP Perusahaan</th>
+              <th>KTA Wartawan</th>
+              <th>CV Perusahaan</th>
+              <th>Surat Penawaran Kerjasama</th>
+              <th>Keterangan</th>
+              <th>Status Kerjasama</th>
+              <th colspan="2">Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+              <?php
+                include 'koneksi.php';
+                $no = 1;
+                $data = mysqli_query($koneksi , "select * from media");
+                while ($d = mysqli_fetch_array($data)){
+                  ?>
+                  <tr>
+                    <td><?php echo $no++; ?></td>
+                    <td><?php echo $d['id_pengajuan']; ?></td>
                     <td><?php echo $d['ktp_pemilik_perusahaan']; ?></td>
                     <td><?php echo $d['npwp_perusahaan']; ?></td>
                     <td><?php echo $d['kta_wartawan']; ?></td>
@@ -122,8 +146,8 @@
                     <td><?php echo $d['surat_penawaran_kerjasama']; ?></td>
                     <td><?php echo $d['keterangan']; ?></td>
                     <td><?php echo $d['status']; ?></td>
-                    <td><a href="User/FormEdit.php?no_pesanan=<?php echo $d['no_pesanan']; ?>"><button class="btn btn-warning">EDIT DATA</button></td>
-                    <td><a href="User/DeleteUser.php?no_pesanan=<?php echo $d['no_pesanan']; ?>" onclick="return confirm('Anda Yakin Ingin Menghapusnya?')"><button class="btn btn-danger">DELETE DATA</button></td>
+                    <td><a href="User/FormEdit.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>"><button class="btn btn-warning">EDIT DATA</button></td>
+                    <td><a href="User/DeleteUser.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>" onclick="return confirm('Anda Yakin Ingin Menghapusnya?')"><button class="btn btn-danger">DELETE DATA</button></td>
                   </tr>
                   <?php
                 }
