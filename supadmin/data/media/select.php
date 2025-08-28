@@ -119,27 +119,62 @@ if (!isset($_SESSION["id_supadmin"])) {
           <h3 class="box-title">Data yang menunggu untuk disetujui</h3>
         </div>
         <div class="box-body">
-          <!-- contoh tabel -->
-          <table class="table table-bordered table-striped">
-            <thead>
+          <div style="overflow-x:auto;">
+            <table id="tabel1" class="table table-bordered table-hover">
+              <thead>
               <tr>
                 <th>No</th>
-                    <th>Nama Media</th>
-                    <th>Nama Perusahaan</th>
-                    <th>Pengajuan Langganan</th>
-                    <th>Nama Wartawan</th>
-                    <th>Harga</th>
-                    <th>Nomor Kontak</th>
-                    <th>Nomor Rekening</th>
-                    <th>KTP Pemilik Perusahaan</th>
-                    <th>NPWP Perusahaan</th>
-                    <th>KTA Wartawan</th>
-                    <th>CV Perusahaan</th>
-                    <th>Surat Penawaran Kerjasama</th>
-                    <th colspan="2">Status Kerjasama</th>
+                <th>ID Pengajuan</th>
+                <th>Nama Media</th>
+                <th>Nama Perusahaan</th>
+                <th>Pengajuan Langganan</th>
+                <th>Nama Wartawan</th>
+                <th>Harga</th>
+                <th>Nomor Kontak</th>
+                <th>Nomor Rekening</th>
+                <th>KTP Pemilik Perusahaan</th>
+                <th>NPWP Perusahaan</th>
+                <th>KTA Wartawan</th>
+                <th>CV Perusahaan</th>
+                <th>Surat Penawaran Kerjasama</th>
+                <th>Keterangan</th>
+                <th>Status</th>
+                <th colspan="2">Aksi</th>
               </tr>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <?php
+                  include '../../../koneksi.php';
+                  $no = 1;
+                  $data = mysqli_query($koneksi , "select * from media where status='Menunggu Persetujuan'");
+                  while ($d = mysqli_fetch_array($data)){
+                    ?>
+                    <tr>
+                      <td><?php echo $no++; ?></td>
+                      <td><?php echo $d['id_pengajuan']; ?></td>
+                      <td><?php echo $d['nama_media']; ?></td>
+                      <td><?php echo $d['nama_perusahaan']; ?></td>
+                      <td><?php echo $d['pengajuan_langganan']; ?></td>
+                      <td><?php echo $d['nama_wartawan']; ?></td>
+                      <td><?php echo $d['harga']; ?></td>
+                      <td><?php echo $d['kontak']; ?></td>
+                      <td><?php echo $d['nomor_rekening']; ?></td>
+                      <td><?php echo $d['ktp_pemilik_perusahaan']; ?></td>
+                      <td><?php echo $d['npwp_perusahaan']; ?></td>
+                      <td><?php echo $d['kta_wartawan']; ?></td>
+                      <td><?php echo $d['cv_perusahaan']; ?></td>
+                      <td><?php echo $d['surat_penawaran_kerjasama']; ?></td>
+                      <td><?php echo $d['keterangan']; ?></td>
+                      <td><?php echo $d['status']; ?></td>
+                      <td><input type="button" class="btn btn-primary" name="status" value="Setujui" onclick="location.href='../../../status_setuju.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>'"></input></td>
+                      <td><input type="button" class="btn btn-danger" name="status" value="Tolak" onclick="location.href='../../../status_ditolak.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>'"></input></td>
+                    </tr>
+                    <?php
+                  }
+                    ?>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>

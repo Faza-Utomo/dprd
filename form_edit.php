@@ -50,7 +50,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#home" class="active">Home</a></li>
-          <li><a href="#rekap">Rekap</a></li>
+          <li><a href="#form">Form</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -73,135 +73,105 @@
       </div>
     </div><!-- End Page Title -->
 
-    <!-- Rekap Section -->
-    <section id="rekap" class="contact section">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <h1>TABEL PERBAIKAN</h1>
-        <div class="box-body">
-          <div style="overflow-x:auto;">
-            <table id="tabel1" class="table table-bordered table-hover">
-              <thead>
-              <tr>
-                <th>No</th>
-                <th>ID Pengajuan</th>
-                <th>Nama Media</th>
-                <th>Nama Perusahaan</th>
-                <th>Pengajuan Langganan</th>
-                <th>Nama Wartawan</th>
-                <th>Harga</th>
-                <th>Nomor Kontak</th>
-                <th>Nomor Rekening</th>
-                <th>KTP Pemilik Perusahaan</th>
-                <th>NPWP Perusahaan</th>
-                <th>KTA Wartawan</th>
-                <th>CV Perusahaan</th>
-                <th>Surat Penawaran Kerjasama</th>
-                <th>Keterangan</th>
-                <th>Status</th>
-                <th colspan="2">Aksi</th>
-              </tr>
-              </thead>
-              <tbody>
-                <?php
-                  include 'koneksi.php';
-                  $no = 1;
-                  $data = mysqli_query($koneksi , "select * from media where status = 'Kesempatan Edit'");
-                  while ($d = mysqli_fetch_array($data)){
-                    ?>
-                    <tr>
-                      <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['id_pengajuan']; ?></td>
-                      <td><?php echo $d['nama_media']; ?></td>
-                      <td><?php echo $d['nama_perusahaan']; ?></td>
-                      <td><?php echo $d['pengajuan_langganan']; ?></td>
-                      <td><?php echo $d['nama_wartawan']; ?></td>
-                      <td><?php echo $d['harga']; ?></td>
-                      <td><?php echo $d['kontak']; ?></td>
-                      <td><?php echo $d['nomor_rekening']; ?></td>
-                      <td><?php echo $d['ktp_pemilik_perusahaan']; ?></td>
-                      <td><?php echo $d['npwp_perusahaan']; ?></td>
-                      <td><?php echo $d['kta_wartawan']; ?></td>
-                      <td><?php echo $d['cv_perusahaan']; ?></td>
-                      <td><?php echo $d['surat_penawaran_kerjasama']; ?></td>
-                      <td><?php echo $d['keterangan']; ?></td>
-                      <td><?php echo $d['status']; ?></td>
-                      <td><a href="form_edit.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>"><button class="btn btn-warning">EDIT DATA</button></td>
-                      <td><input type="button" class="btn btn-success" name="Kirim" value="KIRIM DATA" onclick="location.href='status_menunggu.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>'"></input></td>
-                    </tr>
-                    <?php
-                  }
-                    ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
+    <!-- Service Details Section -->
+    <section id="form" class="contact section">
+      <center>
+        <div class="col-lg-6">
+          <?php
+            include 'koneksi.php';
+            $id=$_GET['id_pengajuan'];
+            $data = mysqli_query($koneksi , "SELECT*FROM media WHERE id_pengajuan='$id'");
+            while($d = mysqli_fetch_array($data)){
+              ?>
+              <form action="edit.php" method="post" enctype="multipart/form-data" data-aos="fade-up" data-aos-delay="500">
+                <div class="row gy-4">
 
-        <br>
-        <br>
-        <br>
-        <br>
+                  <!-- id_pengajuan tidak perlu diisi manual -->
+                  <input type="hidden" name="id_pengajuan" value="<?php echo $d['id_pengajuan']; ?>">
 
-        <h1>TABEL HASIL PERSETUJUAN</h1>
-        <div class="box-body">
-          <div style="overflow-x:auto;">
-            <table id="tabel2" class="table table-bordered table-hover">
-              <thead>
-              <tr>
-                <th>No</th>
-                <th>ID Pengajuan</th>
-                <th>Nama Media</th>
-                <th>Nama Perusahaan</th>
-                <th>Pengajuan Langganan</th>
-                <th>Nama Wartawan</th>
-                <th>Harga</th>
-                <th>Nomor Kontak</th>
-                <th>Nomor Rekening</th>
-                <th>KTP Pemilik Perusahaan</th>
-                <th>NPWP Perusahaan</th>
-                <th>KTA Wartawan</th>
-                <th>CV Perusahaan</th>
-                <th>Surat Penawaran Kerjasama</th>
-                <th>Keterangan</th>
-                <th>Status</th>
-                <th>Aksi</th>
-              </tr>
-              </thead>
-              <tbody>
-                <?php
-                  include 'koneksi.php';
-                  $no = 1;
-                  $data = mysqli_query($koneksi , "select * from media where status='Di Setujui' or status='Tidak Disetujui'");
-                  while ($d = mysqli_fetch_array($data)){
-                    ?>
-                    <tr>
-                      <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['id_pengajuan']; ?></td>
-                      <td><?php echo $d['nama_media']; ?></td>
-                      <td><?php echo $d['nama_perusahaan']; ?></td>
-                      <td><?php echo $d['pengajuan_langganan']; ?></td>
-                      <td><?php echo $d['nama_wartawan']; ?></td>
-                      <td><?php echo $d['harga']; ?></td>
-                      <td><?php echo $d['kontak']; ?></td>
-                      <td><?php echo $d['nomor_rekening']; ?></td>
-                      <td><?php echo $d['ktp_pemilik_perusahaan']; ?></td>
-                      <td><?php echo $d['npwp_perusahaan']; ?></td>
-                      <td><?php echo $d['kta_wartawan']; ?></td>
-                      <td><?php echo $d['cv_perusahaan']; ?></td>
-                      <td><?php echo $d['surat_penawaran_kerjasama']; ?></td>
-                      <td><?php echo $d['keterangan']; ?></td>
-                      <td><?php echo $d['status']; ?></td>
-                    </tr>
-                    <?php
-                  }
-                    ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
+                  <div class="col-md-6">
+                    <input type="text" name="nama_media" class="form-control" placeholder="Nama Media" value="<?php echo $d['nama_media']; ?>" required>
+                  </div>
 
-      </div>
+                  <div class="col-md-6">
+                    <input type="text" name="nama_perusahaan" class="form-control" placeholder="Nama Perusahaan" value="<?php echo $d['nama_perusahaan']; ?>"required>
+                  </div>
 
-    </section> <!-- Dnd Rekap Section -->
+                  <div class="col-md-6">
+                    <select name="pengajuan_langganan" class="form-control" required>
+                      <option value="<?php echo $d['pengajuan_langganan']; ?>">-- Pilih Pengajuan Langganan --</option>
+                      <option value="Tabloid">Tabloid</option>
+                      <option value="Majalah">Majalah</option>
+                      <option value="BeritaOnline">Berita Online</option>
+                      <option value="MediaOnline">Media Online</option>
+                      <option value="Publikasi">Publikasi</option>
+                      <option value="Lainnya">Lainnya...</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="nama_wartawan" placeholder="Nama Wartawan" value="<?php echo $d['nama_wartawan']; ?>" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="harga" placeholder="Harga" value="<?php echo $d['harga']; ?>" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="kontak" placeholder="Nomor Kontak" value="<?php echo $d['kontak']; ?>"required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="nomor_rekening" placeholder="Nomor Rekening" value="<?php echo $d['nomor_rekening']; ?>" required>
+                  </div>
+
+                  <div class="col-md-6"></div>
+
+                  <div class="col-md-6">
+                    <label>KTP Pemilik Perusahaan</label>
+                    <input type="file" name="ktp_pemilik_perusahaan" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label>NPWP Perusahaan</label>
+                    <input type="file" name="npwp_perusahaan" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label>KTA Wartawan</label>
+                    <input type="file" name="kta_wartawan" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label>CV Perusahaan</label>
+                    <input type="file" name="cv_perusahaan" class="form-control" accept=".pdf,.jpg,.jpeg,.png" >
+                  </div>
+
+                  <div class="col-md-6">
+                    <label>Surat Penawaran Kerjasama</label>
+                    <input type="file" name="surat_penawaran_kerjasama" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                  </div>
+
+                  <div class="col-md-12">
+                    <textarea class="form-control" name="keterangan" rows="4" placeholder="Keterangan"><?php echo $d['keterangan']; ?></textarea>
+                  </div>
+
+                  <input type="hidden" name="status" value="Kesempatan Edit">
+
+                  <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary">Kirim Pengajuan</button>
+                  </div>
+                </div>
+              </form>
+              <?php
+            }
+             ?>
+
+
+        </div><!-- End Contact Form -->
+      </center>
+
+    </section><!-- /Service Details Section -->
 
   </main>
 
@@ -262,7 +232,6 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
