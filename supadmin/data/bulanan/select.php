@@ -136,7 +136,7 @@ if (!isset($_SESSION["id_supadmin"])) {
                 <?php
                   include '../../../koneksi.php';
                   $no = 1;
-                  $data = mysqli_query($koneksi , "select * from rekapbulanan");
+                  $data = mysqli_query($koneksi , "select * from bulanan");
                   while ($d = mysqli_fetch_array($data)){
                     ?>
                     <tr>
