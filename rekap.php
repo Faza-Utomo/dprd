@@ -1,3 +1,33 @@
+<?php
+include 'koneksi.php';
+
+// fungsi tombol preview
+function filePreview($nama_media, $file) {
+  if (!$file) {
+    return "<span class='text-muted'>Tidak ada file</span>";
+  }
+
+  $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+  // ganti spasi dengan underscore biar cocok sama folder aslinya
+  $folder = str_replace(" ", "_", $nama_media);
+
+  // path ke folder File_Media/[nama_media]
+  $path = "File_Media/" . $folder . "/" . $file;
+
+  if (in_array($ext, ['jpg','jpeg','png','gif','pdf'])) {
+    return "<a href='$path' class='glightbox btn btn-outline-primary btn-sm'>
+              <i class='bi bi-eye'></i>
+            </a>";
+  } else {
+    return "<a href='$path' target='_blank' class='btn btn-outline-secondary btn-sm'>
+              <i class='bi bi-download'></i>
+            </a>";
+  }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -118,11 +148,12 @@
                       <td><?php echo $d['harga']; ?></td>
                       <td><?php echo $d['kontak']; ?></td>
                       <td><?php echo $d['nomor_rekening']; ?></td>
-                      <td><?php echo $d['ktp_pemilik_perusahaan']; ?></td>
-                      <td><?php echo $d['npwp_perusahaan']; ?></td>
-                      <td><?php echo $d['kta_wartawan']; ?></td>
-                      <td><?php echo $d['cv_perusahaan']; ?></td>
-                      <td><?php echo $d['surat_penawaran_kerjasama']; ?></td>
+                      <!-- tombol preview -->
+                      <td><?php echo filePreview($d['nama_media'], $d['ktp_pemilik_perusahaan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['npwp_perusahaan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['kta_wartawan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['cv_perusahaan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['surat_penawaran_kerjasama']); ?></td>
                       <td><?php echo $d['keterangan']; ?></td>
                       <td><?php echo $d['status']; ?></td>
                       <td><a href="form_edit.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>"><button class="btn btn-warning">EDIT DATA</button></td>
@@ -183,11 +214,13 @@
                       <td><?php echo $d['harga']; ?></td>
                       <td><?php echo $d['kontak']; ?></td>
                       <td><?php echo $d['nomor_rekening']; ?></td>
-                      <td><?php echo $d['ktp_pemilik_perusahaan']; ?></td>
-                      <td><?php echo $d['npwp_perusahaan']; ?></td>
-                      <td><?php echo $d['kta_wartawan']; ?></td>
-                      <td><?php echo $d['cv_perusahaan']; ?></td>
-                      <td><?php echo $d['surat_penawaran_kerjasama']; ?></td>
+                      <!-- tombol preview -->
+                      <td><?php echo filePreview($d['nama_media'], $d['ktp_pemilik_perusahaan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['npwp_perusahaan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['kta_wartawan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['cv_perusahaan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['surat_penawaran_kerjasama']); ?></td>
+                      
                       <td><?php echo $d['keterangan']; ?></td>
                       <td><?php echo $d['status']; ?></td>
                     </tr>
@@ -272,6 +305,11 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- Inisialisasi GLightbox -->
+  <script>
+    const lightbox = GLightbox({ selector: '.glightbox' });
+  </script>
 
 </body>
 

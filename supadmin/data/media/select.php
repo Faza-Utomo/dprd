@@ -5,6 +5,34 @@ if (!isset($_SESSION["id_supadmin"])) {
     header("Location: ../../login_form/formlogin.php");
     exit;
 }
+
+
+
+// fungsi tombol preview
+function filePreview($nama_media, $file) {
+  if (!$file) {
+    return "<span class='text-muted'>Tidak ada file</span>";
+  }
+
+  $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+  // ganti spasi dengan underscore biar cocok sama folder aslinya
+  $folder = str_replace(" ", "_", $nama_media);
+
+  // path ke folder File_Media/[nama_media]
+  $path = "../../../File_Media/" . $folder . "/" . $file;
+
+  if (in_array($ext, ['jpg','jpeg','png','gif','pdf'])) {
+    return "<a href='$path' class='glightbox btn btn-outline-primary btn-sm'>
+              <i class='bi bi-eye'></i>
+            </a>";
+  } else {
+    return "<a href='$path' target='_blank' class='btn btn-outline-secondary btn-sm'>
+              <i class='bi bi-download'></i>
+            </a>";
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +41,11 @@ if (!isset($_SESSION["id_supadmin"])) {
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>SUPER ADMIN HUMAS PROTOKOL</title>
+  <!-- Bootstrap Icons -->
+  <link href="../../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <!-- GLightbox -->
+  <link href="../../../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <script src="../../../assets/vendor/glightbox/js/glightbox.min.js"></script>
   <!-- icon web -->
   <link href="../../../assets/img/favicon.jpg" rel="icon">
   <!-- responsive -->
@@ -159,11 +192,12 @@ if (!isset($_SESSION["id_supadmin"])) {
                       <td><?php echo $d['harga']; ?></td>
                       <td><?php echo $d['kontak']; ?></td>
                       <td><?php echo $d['nomor_rekening']; ?></td>
-                      <td><?php echo $d['ktp_pemilik_perusahaan']; ?></td>
-                      <td><?php echo $d['npwp_perusahaan']; ?></td>
-                      <td><?php echo $d['kta_wartawan']; ?></td>
-                      <td><?php echo $d['cv_perusahaan']; ?></td>
-                      <td><?php echo $d['surat_penawaran_kerjasama']; ?></td>
+                      <!-- tombol preview -->
+                      <td><?php echo filePreview($d['nama_media'], $d['ktp_pemilik_perusahaan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['npwp_perusahaan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['kta_wartawan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['cv_perusahaan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['surat_penawaran_kerjasama']); ?></td>
                       <td><?php echo $d['keterangan']; ?></td>
                       <td><?php echo $d['status']; ?></td>
                       <td><input type="button" class="btn btn-primary" name="status" value="Setujui" onclick="location.href='../../../status_setuju.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>'"></input></td>
@@ -209,6 +243,11 @@ if (!isset($_SESSION["id_supadmin"])) {
 <script src="../../dist/js/adminlte.min.js"></script>
 <script src="../../dist/js/pages/dashboard.js"></script>
 <script src="../../dist/js/demo.js"></script>
+
+<!-- Inisialisasi GLightbox -->
+<script>
+  const lightbox = GLightbox({ selector: '.glightbox' });
+</script>
 
 <script>
   $(document).ready(function () {
