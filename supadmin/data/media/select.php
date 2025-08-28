@@ -84,7 +84,7 @@ if (!isset($_SESSION["id_supadmin"])) {
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="select.php"><i class="fa fa-table"></i> Data Persetujuan</a></li>
+            <li class="active"><a href="select.php"><i class="fa fa-table"></i> Data Persetujuan</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -92,7 +92,7 @@ if (!isset($_SESSION["id_supadmin"])) {
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../transaksi/select.php"><i class="fa fa-table"></i>Data Rekap Harian</a></li>
+            <li><a href="../harian/select.php"><i class="fa fa-table"></i>Data Rekap Harian</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -100,7 +100,7 @@ if (!isset($_SESSION["id_supadmin"])) {
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../menu/select.php"><i class="fa fa-table"></i>Data Rekap Bulanan</a></li>
+            <li><a href="../bulanan/select.php"><i class="fa fa-table"></i>Data Rekap Bulanan</a></li>
           </ul>
         </li>
       </ul>

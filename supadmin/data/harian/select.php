@@ -84,23 +84,23 @@ if (!isset($_SESSION["id_supadmin"])) {
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../pemesanan/select.php"><i class="fa fa-table"></i> Data Persetujuan</a></li>
+            <li><a href="../media/select.php"><i class="fa fa-table"></i> Data Persetujuan</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="active treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Rekap Harian</span>
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../transaksi/select.php"><i class="fa fa-table"></i>Data Rekap Harian</a></li>
+            <li class="active"><a href="select.php"><i class="fa fa-table"></i>Data Rekap Harian</a></li>
           </ul>
         </li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Rekap Bulanan</span>
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="select.php"><i class="fa fa-table"></i>Data Rekap Bulanan</a></li>
+            <li><a href="../bulanan/select.php"><i class="fa fa-table"></i>Data Rekap Bulanan</a></li>
           </ul>
         </li>
       </ul>
@@ -110,13 +110,13 @@ if (!isset($_SESSION["id_supadmin"])) {
   <!-- Content -->
   <div class="content-wrapper">
     <section class="content-header">
-      <h1>Laporan Rekap Bulanan</h1>
+      <h1>Laporan Rekap Harian</h1>
     </section>
 
     <section class="content">
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Data Rekap Bulanan</h3>
+          <h3 class="box-title">Data Rekap Harian</h3>
         </div>
         <div class="box-body">
           <!-- contoh tabel -->
@@ -124,7 +124,7 @@ if (!isset($_SESSION["id_supadmin"])) {
             <thead>
               <tr>
                 <th>No</th>
-                    <th>Iki buat tabel lagi</th>
+                    <th>Iki Buat tabel</th>
               </tr>
             </tbody>
           </table>
