@@ -124,7 +124,12 @@ if (!isset($_SESSION["id_supadmin"])) {
             <thead>
               <tr>
                 <th>No</th>
-                    <th>Iki buat tabel lagi</th>
+                    <th>Nama Media</th>
+                    <th>Harga per Eksemplar</th>
+                    <th>Koran yang dikirim perkiriman</th>
+                    <th>Total pengiriman (Dalam 1 bulan)</th>
+                    <th>Harga perbulan</th>
+                    <th>Harga pertriwulan</th>
               </tr>
             </tbody>
           </table>
