@@ -131,7 +131,27 @@ if (!isset($_SESSION["id_supadmin"])) {
                     <th>Harga perbulan</th>
                     <th>Harga pertriwulan</th>
               </tr>
-            </tbody>
+            </thead>
+            <tbody>
+                <?php
+                  include '../../../koneksi.php';
+                  $no = 1;
+                  $data = mysqli_query($koneksi , "select * from rekapbulanan");
+                  while ($d = mysqli_fetch_array($data)){
+                    ?>
+                    <tr>
+                      <td><?php echo $no++; ?></td>
+                      <td><?php echo $d['id_bulanan']; ?></td>
+                      <td><?php echo $d['nama_media']; ?></td>
+                      <td><?php echo $d['harga']; ?></td>
+                      <td><?php echo $d['eksemplar']; ?></td>
+                      <td><?php echo $d['total_pengiriman']; ?></td>
+                      <td><?php echo $d['harga_bulanan']; ?></td>
+                      <td><?php echo $d['harga_triwulanan']; ?></td>
+                    <?php
+                  }
+                    ?>
+              </tbody>
           </table>
         </div>
       </div>

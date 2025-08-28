@@ -127,9 +127,9 @@ if ( !isset($_SESSION["id_admin"])) {
                   <i class="bi bi-easel"></i>
                 </div>
                 <a href="rekap.php" class="stretched-link">
-                  <h3>Rekap Harian Media</h3>
+                  <h3>REKAP PENGAJUAN</h3>
                 </a>
-                <p>Bagian rekap harian media</p>
+                <p>Bagian untuk melihat rekap data dari pengajuan media</p>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -144,7 +144,7 @@ if ( !isset($_SESSION["id_admin"])) {
                   <i class="bi bi-broadcast"></i>
                 </div>
                 <a href="form_media.php" class="stretched-link">
-                  <h3>Link Lainnya</h3>
+                  <h3>FORMULIR PENDATAAN HARIAN</h3>
                 </a>
                 <p>Info Link  </p>
               </div>
@@ -161,7 +161,24 @@ if ( !isset($_SESSION["id_admin"])) {
                   <i class="bi bi-broadcast"></i>
                 </div>
                 <a href="form_media.php" class="stretched-link">
-                  <h3>Link Lainnya</h3>
+                  <h3>REKAP HARIAN</h3>
+                </a>
+                <p>Info Link  </p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/services-2.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-broadcast"></i>
+                </div>
+                <a href=".php" class="stretched-link">
+                  <h3>REKAP BULANAN</h3>
                 </a>
                 <p>Info Link  </p>
               </div>
