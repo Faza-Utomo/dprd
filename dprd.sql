@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2025 at 04:07 AM
+-- Generation Time: Aug 28, 2025 at 04:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,23 +40,24 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `no_hp`) VALUES
-(1, 'Muhammad Fajar', 'fajar@gmail.com', 'fajar123', '089741021');
+(1, 'Muhammad Fajar', 'fajar@gmail.com', 'fajar123', '089741021'),
+(3, 'Asep Sumenep', 'SumenepAsep@gmail.com', 'admin1234', '0812345678');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengajuan_media`
+-- Table structure for table `media`
 --
 
-CREATE TABLE `pengajuan_media` (
+CREATE TABLE `media` (
   `id_pengajuan` int(11) NOT NULL,
   `nama_media` varchar(50) NOT NULL,
   `nama_perusahaan` varchar(50) NOT NULL,
   `pengajuan_langganan` varchar(50) NOT NULL,
   `nama_wartawan` varchar(50) NOT NULL,
-  `harga` int(15) NOT NULL,
-  `kontak` int(14) NOT NULL,
-  `nomor_rekening` int(16) NOT NULL,
+  `harga` varchar(15) NOT NULL,
+  `kontak` varchar(14) NOT NULL,
+  `nomor_rekening` varchar(16) NOT NULL,
   `ktp_pemilik_perusahaan` varchar(255) NOT NULL,
   `npwp_perusahaan` varchar(255) NOT NULL,
   `kta_wartawan` varchar(255) NOT NULL,
@@ -64,6 +65,29 @@ CREATE TABLE `pengajuan_media` (
   `surat_penawaran_kerjasama` varchar(255) NOT NULL,
   `keterangan` text NOT NULL,
   `status` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `media`
+--
+
+INSERT INTO `media` (`id_pengajuan`, `nama_media`, `nama_perusahaan`, `pengajuan_langganan`, `nama_wartawan`, `harga`, `kontak`, `nomor_rekening`, `ktp_pemilik_perusahaan`, `npwp_perusahaan`, `kta_wartawan`, `cv_perusahaan`, `surat_penawaran_kerjasama`, `keterangan`, `status`) VALUES
+(5, 'Awikwok Media', 'PT Aaowkoawk sejahtera', 'Majalah', 'Ijat Surijat', '15000', '08123456789', '12345678', '1756275545_doraemonPNG.png', '1756275545_dprd test JPEG.jpeg', '1756275545_dprd test JPEG 3.jpeg', '1756275545_dprd test JPEG 2.jpeg', '1756275545_PROPOSAL KERJA PRAKTIK.pdf', 'Ipsum lorem ipsum lore ini hanya sebuah keterangan untuk pengetest an', 'Kesempatan Edit');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rekapbulanan`
+--
+
+CREATE TABLE `rekapbulanan` (
+  `id_bulanan` int(11) NOT NULL,
+  `nama_media` varchar(50) NOT NULL,
+  `harga` varchar(15) NOT NULL,
+  `eksemplar` varchar(8) NOT NULL,
+  `total_pengiriman` varchar(20) NOT NULL,
+  `harga_bulanan` int(30) NOT NULL,
+  `harga_triwulanan` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -81,6 +105,13 @@ CREATE TABLE `supadmin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `supadmin`
+--
+
+INSERT INTO `supadmin` (`id_supadmin`, `nama`, `email`, `password`, `no_hp`) VALUES
+(1, 'Mamank Asep', 'asepsuresep@gmail.com', 'admin1234', '08123456789');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -91,10 +122,16 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `pengajuan_media`
+-- Indexes for table `media`
 --
-ALTER TABLE `pengajuan_media`
+ALTER TABLE `media`
   ADD PRIMARY KEY (`id_pengajuan`);
+
+--
+-- Indexes for table `rekapbulanan`
+--
+ALTER TABLE `rekapbulanan`
+  ADD PRIMARY KEY (`id_bulanan`);
 
 --
 -- Indexes for table `supadmin`
@@ -110,19 +147,25 @@ ALTER TABLE `supadmin`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `pengajuan_media`
+-- AUTO_INCREMENT for table `media`
 --
-ALTER TABLE `pengajuan_media`
-  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `media`
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `rekapbulanan`
+--
+ALTER TABLE `rekapbulanan`
+  MODIFY `id_bulanan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `supadmin`
 --
 ALTER TABLE `supadmin`
-  MODIFY `id_supadmin` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_supadmin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
