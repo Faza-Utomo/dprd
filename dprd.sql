@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2025 at 07:10 AM
+-- Generation Time: Aug 29, 2025 at 04:08 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,10 +50,14 @@ INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `no_hp`) VALUES
 --
 
 CREATE TABLE `bulanan` (
-  `id_bulanan` int(11) NOT NULL,
+  `id_bulanan` int(5) NOT NULL,
+  `id_pengajuan` int(5) NOT NULL,
+  `id_harian` int(5) NOT NULL,
+  `bulan` varchar(15) NOT NULL,
   `nama_media` varchar(50) NOT NULL,
   `harga` varchar(15) NOT NULL,
   `eksemplar` varchar(8) NOT NULL,
+  `jml_hari` int(5) NOT NULL,
   `total_pengiriman` varchar(20) NOT NULL,
   `harga_bulanan` int(30) NOT NULL,
   `harga_triwulanan` int(30) NOT NULL
@@ -62,11 +66,35 @@ CREATE TABLE `bulanan` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `harian`
+--
+
+CREATE TABLE `harian` (
+  `id_harian` int(5) NOT NULL,
+  `id_pengajuan` int(5) NOT NULL,
+  `nama_media` varchar(50) NOT NULL,
+  `harga` varchar(15) NOT NULL,
+  `eksemplar` int(15) NOT NULL,
+  `tanggal` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `harian`
+--
+
+INSERT INTO `harian` (`id_harian`, `id_pengajuan`, `nama_media`, `harga`, `eksemplar`, `tanggal`) VALUES
+(2, 6, 'Pangsit Media', '30000', 0, '2025-08-31 08:58:00'),
+(3, 7, 'Mie Ayam Hitam', '10000', 0, '2025-08-29 08:59:00'),
+(7, 5, 'Awikwok Media', '15000', 51, '2025-08-31 09:01:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `media`
 --
 
 CREATE TABLE `media` (
-  `id_pengajuan` int(11) NOT NULL,
+  `id_pengajuan` int(5) NOT NULL,
   `nama_media` varchar(50) NOT NULL,
   `nama_perusahaan` varchar(50) NOT NULL,
   `pengajuan_langganan` varchar(50) NOT NULL,
@@ -111,7 +139,8 @@ CREATE TABLE `supadmin` (
 --
 
 INSERT INTO `supadmin` (`id_supadmin`, `nama`, `email`, `password`, `no_hp`) VALUES
-(1, 'Mamank Asep', 'asepsuresep@gmail.com', 'admin1234', '08123456789');
+(1, 'Mamank Asep', 'asepsuresep@gmail.com', 'admin1234', '08123456789'),
+(2, 'Ucok Jamet', 'ucok@gmail.com', 'ucok123', '0897382052');
 
 --
 -- Indexes for dumped tables
@@ -127,7 +156,16 @@ ALTER TABLE `admin`
 -- Indexes for table `bulanan`
 --
 ALTER TABLE `bulanan`
-  ADD PRIMARY KEY (`id_bulanan`);
+  ADD PRIMARY KEY (`id_bulanan`),
+  ADD UNIQUE KEY `id_pengajuan` (`id_pengajuan`,`id_harian`),
+  ADD KEY `id_harian` (`id_harian`);
+
+--
+-- Indexes for table `harian`
+--
+ALTER TABLE `harian`
+  ADD PRIMARY KEY (`id_harian`),
+  ADD UNIQUE KEY `id_pengajuan` (`id_pengajuan`);
 
 --
 -- Indexes for table `media`
@@ -155,19 +193,42 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bulanan`
 --
 ALTER TABLE `bulanan`
-  MODIFY `id_bulanan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bulanan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `harian`
+--
+ALTER TABLE `harian`
+  MODIFY `id_harian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pengajuan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `supadmin`
 --
 ALTER TABLE `supadmin`
-  MODIFY `id_supadmin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_supadmin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bulanan`
+--
+ALTER TABLE `bulanan`
+  ADD CONSTRAINT `bulanan_ibfk_1` FOREIGN KEY (`id_harian`) REFERENCES `harian` (`id_harian`),
+  ADD CONSTRAINT `bulanan_ibfk_2` FOREIGN KEY (`id_pengajuan`) REFERENCES `media` (`id_pengajuan`);
+
+--
+-- Constraints for table `harian`
+--
+ALTER TABLE `harian`
+  ADD CONSTRAINT `harian_ibfk_1` FOREIGN KEY (`id_pengajuan`) REFERENCES `media` (`id_pengajuan`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
