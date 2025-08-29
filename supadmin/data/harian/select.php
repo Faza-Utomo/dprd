@@ -122,10 +122,36 @@ if (!isset($_SESSION["id_supadmin"])) {
           <!-- contoh tabel -->
           <table class="table table-bordered table-striped">
             <thead>
-              <tr>
-                <th>No</th>
-                    <th>Iki Buat tabel</th>
-              </tr>
+            <tr>
+              <th>No</th>
+              <th>ID Harian</th>
+              <th>ID Pengajuan</th>
+              <th>Nama Media</th>
+              <th>Harga</th>
+              <th>Eksemplar</th>
+              <th>Tanggal</th>
+              <th>Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+              <?php
+                include '../../../koneksi.php';
+                $no = 1;
+                $data = mysqli_query($koneksi , "select * from harian");
+                while ($d = mysqli_fetch_array($data)){
+                  ?>
+                  <tr>
+                    <td><?php echo $no++; ?></td>
+                    <td><?php echo $d['id_harian']; ?></td>
+                    <td><?php echo $d['id_pengajuan']; ?></td>
+                    <td><?php echo $d['nama_media']; ?></td>
+                    <td><?php echo $d['harga']; ?></td>
+                    <td><?php echo $d['eksemplar']; ?></td>
+                    <td><?php echo $d['tanggal']; ?></td>
+                  </tr>
+                  <?php
+                }
+                  ?>
             </tbody>
           </table>
         </div>
