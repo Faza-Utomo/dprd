@@ -112,8 +112,8 @@ $mediaList = mysqli_query($koneksi, "SELECT id_pengajuan, nama_media, harga FROM
                 </div>
 
                 <div class="col-md-6">
-                  <label for="jumlah" class="form-label">Jumlah</label>
-                  <input type="number" name="jumlah" id="jumlah" class="form-control" required>
+                  <label for="eksemplar" class="form-label">Eksemplar</label>
+                  <input type="number" name="eksemplar" id="eksemplar" class="form-control" required>
                 </div>
 
                 <div class="col-md-6">
