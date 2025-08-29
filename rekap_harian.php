@@ -9,10 +9,7 @@ function filePreview($nama_media, $file) {
 
   $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
-  // ganti spasi dengan underscore biar cocok sama folder aslinya
   $folder = str_replace(" ", "_", $nama_media);
-
-  // path ke folder File_Media/[nama_media]
   $path = "File_Media/" . $folder . "/" . $file;
 
   if (in_array($ext, ['jpg','jpeg','png','gif','pdf'])) {
@@ -26,7 +23,6 @@ function filePreview($nama_media, $file) {
   }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +41,7 @@ function filePreview($nama_media, $file) {
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -56,27 +52,16 @@ function filePreview($nama_media, $file) {
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Dewi
-  * Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="service-details-page">
 
+  <!-- Header -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
       <a href="index.php" class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">HUMAS PROTOKOL</h1>
       </a>
-
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#home" class="active">Home</a></li>
@@ -93,7 +78,6 @@ function filePreview($nama_media, $file) {
     <div id="home" class="page-title dark-background" data-aos="fade" style="background-image: url(assets/img/hero-bg.png);">
       <div class="container position-relative">
         <h1>FORMULIR PENGAJUAN MEDIA</h1>
-        <p></p>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.php">Home</a></li>
@@ -101,7 +85,7 @@ function filePreview($nama_media, $file) {
           </ol>
         </nav>
       </div>
-    </div><!-- End Page Title -->
+    </div>
 
     <!-- Rekap Section -->
     <section id="rekap" class="contact section">
@@ -119,41 +103,37 @@ function filePreview($nama_media, $file) {
                 <th>Harga</th>
                 <th>Eksemplar</th>
                 <th>Tanggal</th>
-                <th>Aksi</th>
               </tr>
               </thead>
               <tbody>
                 <?php
-                  include 'koneksi.php';
                   $no = 1;
                   $data = mysqli_query($koneksi , "select * from harian");
                   while ($d = mysqli_fetch_array($data)){
-                    ?>
-                    <tr>
-                      <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['id_harian']; ?></td>
-                      <td><?php echo $d['id_pengajuan']; ?></td>
-                      <td><?php echo $d['nama_media']; ?></td>
-                      <td><?php echo $d['harga']; ?></td>
-                      <td><?php echo $d['eksemplar']; ?></td>
-                      <td><?php echo $d['tanggal']; ?></td>
-                    </tr>
-                    <?php
+                    echo "<tr>
+                            <td>".$no++."</td>
+                            <td>".$d['id_harian']."</td>
+                            <td>".$d['id_pengajuan']."</td>
+                            <td>".$d['nama_media']."</td>
+                            <td>".$d['harga']."</td>
+                            <td>".$d['eksemplar']."</td>
+                            <td>".$d['tanggal']."</td>
+                          </tr>";
                   }
-                    ?>
+                ?>
               </tbody>
             </table>
+            <button id="btnExport" class="btn btn-success mt-3">
+              <i class="bi bi-file-earmark-excel"></i> Export ke Excel
+            </button>
           </div>
         </div>
-
       </div>
-
-    </section> <!-- Dnd Rekap Section -->
-
+    </section>
   </main>
 
+  <!-- Footer -->
   <footer id="footer" class="footer dark-background">
-
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
@@ -162,49 +142,26 @@ function filePreview($nama_media, $file) {
           </a>
           <div class="footer-contact pt-3">
             <p>Jalan Raya Cijamil RT 03 RW 06</p>
-            <p>Kampung Cijamil, Ngamprah, Kec. Ngamprah,</p>
+            <p>Kampung Cijamil, Ngamprah, Kec. Ngamprah</p>
             <p class="mt-3"><strong>Phone:</strong> <span>+62</span></p>
             <p><strong>Email:</strong> <span>info@dprd.com</span></p>
           </div>
           <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
       </div>
     </div>
-
     <div class="container copyright text-center mt-4">
       <p>© <span>Copyright</span> <strong class="px-1 sitename">FajarDJ & Naufal Faza</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Pur  chase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://www.instagram.com/_fajardj/">FajarDJ</a> And <a href="https://www.instagram.com/naufal.paja/">Naufal Faza</a>
-      </div>
     </div>
-
   </footer>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
@@ -217,14 +174,78 @@ function filePreview($nama_media, $file) {
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <!-- Export Excel (ExcelJS + FileSaver) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
-  <!-- Inisialisasi GLightbox -->
   <script>
-    const lightbox = GLightbox({ selector: '.glightbox' });
+  document.getElementById("btnExport").addEventListener("click", function () {
+    var workbook = new ExcelJS.Workbook();
+    var worksheet = workbook.addWorksheet("Rekap Data");
+
+    // ambil tabel HTML
+    var tabel = document.getElementById("tabel2");
+    var rows = tabel.querySelectorAll("tr");
+
+    rows.forEach((row, rowIndex) => {
+      let cells = row.querySelectorAll("th, td");
+      let rowData = [];
+      cells.forEach((cell) => {
+        rowData.push(cell.innerText);
+      });
+      worksheet.addRow(rowData);
+
+      // styling header
+      if (rowIndex === 0) {
+        cells.forEach((cell, colIndex) => {
+          let excelCell = worksheet.getRow(1).getCell(colIndex+1);
+          excelCell.font = { bold: true };
+          excelCell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFD9D9D9" } };
+          excelCell.border = {
+            top: {style:'thin'},
+            left: {style:'thin'},
+            bottom: {style:'thin'},
+            right: {style:'thin'}
+          };
+        });
+      }
+    });
+
+    // kasih border semua cell
+    worksheet.eachRow(function(row) {
+      row.eachCell(function(cell) {
+        cell.border = {
+          top: {style:'thin'},
+          left: {style:'thin'},
+          bottom: {style:'thin'},
+          right: {style:'thin'}
+        };
+      });
+    });
+
+    // auto width kolom
+    worksheet.columns.forEach(function (column) {
+      let maxLength = 0;
+      column.eachCell({ includeEmpty: true }, function (cell) {
+        let columnLength = cell.value ? cell.value.toString().length : 10;
+        if (columnLength > maxLength ) {
+          maxLength = columnLength;
+        }
+      });
+      column.width = maxLength < 10 ? 10 : maxLength + 2;
+    });
+
+    // simpan file
+    workbook.xlsx.writeBuffer().then(function (data) {
+      var blob = new Blob([data], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+      saveAs(blob, "rekap_data.xlsx");
+    });
+  });
   </script>
 
-</body>
+  <!-- Main JS -->
+  <script src="assets/js/main.js"></script>
+  <script>const lightbox = GLightbox({ selector: '.glightbox' });</script>
 
+</body>
 </html>
