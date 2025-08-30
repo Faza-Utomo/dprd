@@ -134,6 +134,23 @@ if ( !isset($_SESSION["id_admin"])) {
             </div>
           </div><!-- End Service Item -->
 
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/services-2.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-broadcast"></i>
+                </div>
+                <a href="form_bulanan.php" class="stretched-link">
+                  <h3>FORMULIR PENDATAAN BULANAN</h3>
+                </a>
+                <p>Info Link  </p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
           <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
             <div class="service-item">
               <div class="img">

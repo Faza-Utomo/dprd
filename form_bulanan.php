@@ -112,10 +112,16 @@ $harianList = mysqli_query($koneksi, "SELECT id_harian, tanggal, nama_media FROM
                   <input type="number" name="jml_hari" id="jml_hari" class="form-control" required>
                 </div>
 
-                <!-- Eksemplar -->
+                <!-- Harga (readonly) -->
+                <div class="col-md-6">
+                  <label for="harga" class="form-label">Harga</label>
+                  <input type="text" name="harga" id="harga" class="form-control" readonly>
+                </div>
+
+                <!-- Eksemplar (readonly) -->
                 <div class="col-md-6">
                   <label for="eksemplar" class="form-label">Eksemplar</label>
-                  <input type="number" name="eksemplar" id="eksemplar" class="form-control" required>
+                  <input type="text" name="eksemplar" id="eksemplar" class="form-control" readonly>
                 </div>
 
                 <!-- Perbulan (readonly) -->
@@ -125,7 +131,7 @@ $harianList = mysqli_query($koneksi, "SELECT id_harian, tanggal, nama_media FROM
                 </div>
 
                 <!-- Triwulan (readonly) -->
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <label for="triwulan" class="form-label">Triwulan</label>
                   <input type="text" name="triwulan" id="triwulan" class="form-control" readonly>
                 </div>
@@ -144,6 +150,51 @@ $harianList = mysqli_query($koneksi, "SELECT id_harian, tanggal, nama_media FROM
       </div>
     </section>
     <!-- End Form Section -->
+
+<script>
+// Script: Ambil harga & eksemplar berdasarkan id_harian
+document.addEventListener("DOMContentLoaded", function () {
+  const idHarianSelect = document.getElementById("id_harian");
+  const hargaInput = document.getElementById("harga");
+  const eksemplarInput = document.getElementById("eksemplar");
+  const jmlHariInput = document.getElementById("jml_hari");
+  const perbulanInput = document.getElementById("perbulan");
+  const triwulanInput = document.getElementById("triwulan");
+
+  function hitung() {
+    let harga = parseInt(hargaInput.value) || 0;
+    let eksemplar = parseInt(eksemplarInput.value) || 0;
+    let jmlHari = parseInt(jmlHariInput.value) || 0;
+
+    let perbulan = harga * eksemplar * jmlHari;
+    let triwulan = perbulan * 3;
+
+    perbulanInput.value = perbulan > 0 ? perbulan : "";
+    triwulanInput.value = triwulan > 0 ? triwulan : "";
+  }
+
+  idHarianSelect.addEventListener("change", function () {
+    let idHarian = this.value;
+    if (idHarian) {
+      fetch("get_harian.php?id=" + idHarian)
+        .then(response => response.json())
+        .then(data => {
+          hargaInput.value = data.harga;
+          eksemplarInput.value = data.eksemplar;
+          hitung();
+        });
+    } else {
+      hargaInput.value = "";
+      eksemplarInput.value = "";
+      perbulanInput.value = "";
+      triwulanInput.value = "";
+    }
+  });
+
+  jmlHariInput.addEventListener("input", hitung);
+});
+</script>
+
 
   </main>
 
@@ -172,48 +223,5 @@ $harianList = mysqli_query($koneksi, "SELECT id_harian, tanggal, nama_media FROM
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-
-  <!-- Custom Script untuk hitung otomatis -->
-  <script>
-    let harga = 0;
-
-    // Ambil harga berdasarkan id_harian (AJAX)
-    document.getElementById("id_harian").addEventListener("change", function () {
-      const idHarian = this.value;
-
-      if (idHarian) {
-        fetch("get_harga.php?id_harian=" + idHarian)
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              harga = parseInt(data.harga);
-              hitung();
-            }
-          });
-      } else {
-        harga = 0;
-        document.getElementById("perbulan").value = "";
-        document.getElementById("triwulan").value = "";
-      }
-    });
-
-    // Hitung otomatis perbulan & triwulan
-    function hitung() {
-      let jmlHari = parseInt(document.getElementById("jml_hari").value) || 0;
-      let eksemplar = parseInt(document.getElementById("eksemplar").value) || 0;
-
-      if (harga > 0 && jmlHari > 0 && eksemplar > 0) {
-        let perbulan = harga * jmlHari * eksemplar;
-        let triwulan = perbulan * 3;
-
-        document.getElementById("perbulan").value = "Rp " + perbulan.toLocaleString("id-ID");
-        document.getElementById("triwulan").value = "Rp " + triwulan.toLocaleString("id-ID");
-      }
-    }
-
-    document.getElementById("jml_hari").addEventListener("input", hitung);
-    document.getElementById("eksemplar").addEventListener("input", hitung);
-  </script>
-
 </body>
 </html>
