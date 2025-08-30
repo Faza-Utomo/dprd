@@ -103,14 +103,60 @@ $harianList = mysqli_query($koneksi, "SELECT id_harian, tanggal, nama_media FROM
                 <!-- Bulan -->
                 <div class="col-md-6">
                   <label for="bulan" class="form-label">Bulan</label>
-                  <input type="text" name="bulan" id="bulan" class="form-control" placeholder="Contoh: Agustus 2025" required>
+                  <select name="bulan" id="bulan" class="form-control" required onchange="setHari()">
+                    <option value="">-- Pilih Bulan --</option>
+                    <option value="Januari">Januari</option>
+                    <option value="Februari">Februari</option>
+                    <option value="Maret">Maret</option>
+                    <option value="April">April</option>
+                    <option value="Mei">Mei</option>
+                    <option value="Juni">Juni</option>
+                    <option value="Juli">Juli</option>
+                    <option value="Agustus">Agustus</option>
+                    <option value="September">September</option>
+                    <option value="Oktober">Oktober</option>
+                    <option value="November">November</option>
+                    <option value="Desember">Desember</option>
+                  </select>
                 </div>
 
                 <!-- Jumlah Hari -->
                 <div class="col-md-6">
                   <label for="jml_hari" class="form-label">Jumlah Hari</label>
-                  <input type="number" name="jml_hari" id="jml_hari" class="form-control" required>
+                  <input type="number" name="jml_hari" id="jml_hari" class="form-control" readonly required>
                 </div>
+
+                <script>
+                function setHari() {
+                    const bulan = document.getElementById("bulan").value;
+                    const jmlHari = document.getElementById("jml_hari");
+                    let hari = 30; // default
+
+                    switch(bulan) {
+                        case "Januari":
+                        case "Maret":
+                        case "Mei":
+                        case "Juli":
+                        case "Agustus":
+                        case "Oktober":
+                        case "Desember":
+                            hari = 31;
+                            break;
+                        case "April":
+                        case "Juni":
+                        case "September":
+                        case "November":
+                            hari = 30;
+                            break;
+                        case "Februari":
+                            hari = 28; // bisa ditambahkan cek kabisat kalau perlu
+                            break;
+                    }
+
+                    jmlHari.value = hari;
+                }
+                </script>
+
 
                 <!-- Harga (readonly) -->
                 <div class="col-md-6">
