@@ -8,7 +8,7 @@ if (!isset($_SESSION["id_admin"])) {
 include 'koneksi.php';
 
 // Ambil semua data media untuk dropdown
-$mediaList = mysqli_query($koneksi, "SELECT id_pengajuan, nama_media, harga FROM media");
+$mediaList = mysqli_query($koneksi, "SELECT id_pengajuan, nama_media, harga FROM media WHERE status = 'Disetujui'");
 ?>
 
 <!DOCTYPE html>
