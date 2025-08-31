@@ -108,7 +108,7 @@
               </div>
 
               <div class="col-md-6">
-                <input type="text" class="form-control" name="harga" id="harga" placeholder="Harga" required>
+                <input type="text" class="form-control" name="harga" placeholder="Harga" required>
               </div>
 
               <div class="col-md-6">
@@ -119,7 +119,10 @@
                 <input type="text" class="form-control" name="norekening" placeholder="Nomor Rekening" required>
               </div>
 
-              <div class="col-md-6"></div>
+              <div class="col-md-6">
+                <label for="tanggal" class="form-label">Tanggal</label>
+                <input type="datetime-local" name="tanggal" id="tanggal" class="form-control" required>
+              </div>
 
               <div class="col-md-6">
                 <label>KTP Pemilik Perusahaan</label>
@@ -229,23 +232,6 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script>
-    const inputHarga = document.getElementById('harga');
-
-    inputHarga.addEventListener('blur', function() {
-      let value = this.value.replace(/\D/g, ''); // hanya angka
-      if (value) {
-        // format jadi Rupiah
-        this.value = 'Rp ' + new Intl.NumberFormat('id-ID').format(value);
-      }
-    });
-
-    // Supaya saat fokus lagi, Rp hilang (biar bisa edit angka mentah)
-    inputHarga.addEventListener('focus', function() {
-      this.value = this.value.replace(/\D/g, '');
-    });
-  </script>
-
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>

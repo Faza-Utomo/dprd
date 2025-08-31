@@ -121,19 +121,15 @@ if (!isset($_SESSION["id_supadmin"])) {
         <div class="box-body">
           <!-- contoh tabel -->
           <table id="tabel2" class="table table-bordered table-striped">
-            <button id="btnExport" class="btn btn-success mt-3">
-              <i class="bi bi-file-earmark-excel"></i> Export ke Excel
+            <button id="btnExport" class="btn btn-success" style="margin-bottom:10px;">
+              <i class="fa fa-file-excel-o"></i> Export ke Excel
             </button>
             <thead>
             <tr>
               <th>No</th>
-              <th>ID Harian</th>
-              <th>ID Pengajuan</th>
               <th>Nama Media</th>
-              <th>Harga</th>
-              <th>Eksemplar</th>
+              <th>Eksemplar yang dikirim</th>
               <th>Tanggal</th>
-              <th>Aksi</th>
             </tr>
             </thead>
             <tbody>
@@ -145,13 +141,9 @@ if (!isset($_SESSION["id_supadmin"])) {
                   ?>
                   <tr>
                     <td><?php echo $no++; ?></td>
-                    <td><?php echo $d['id_harian']; ?></td>
-                    <td><?php echo $d['id_pengajuan']; ?></td>
                     <td><?php echo $d['nama_media']; ?></td>
-                    <td><?php echo $d['harga']; ?></td>
                     <td><?php echo $d['eksemplar']; ?></td>
                     <td><?php echo $d['tanggal']; ?></td>
-                  </tr>
                   <?php
                 }
                   ?>
@@ -192,18 +184,39 @@ if (!isset($_SESSION["id_supadmin"])) {
 <script src="../../dist/js/pages/dashboard.js"></script>
 <script src="../../dist/js/demo.js"></script>
 
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+
 <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree();
-  });
-</script>
 
-<!-- Export Excel (ExcelJS + FileSaver) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-<script>
-  // kode export excel di sini
+    // aktifkan datatable
+    $('#tabel2').DataTable({
+      "paging": true,        // ada pagination
+      "ordering": true,      // bisa sorting
+      "info": true,          // info jumlah data
+      "order": [[0, "asc"]], // default urutkan kolom pertama (No) ASC
+      "language": {
+        "search": "Cari:",
+        "lengthMenu": "Tampilkan _MENU_ data per halaman",
+        "zeroRecords": "Data tidak ditemukan",
+        "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
+        "infoEmpty": "Tidak ada data tersedia",
+        "infoFiltered": "(difilter dari _MAX_ total data)"
+      }
+    });
+  });
+
 </script>
+<!-- Export Excel (ExcelJS + FileSaver) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
   <script>
   document.getElementById("btnExport").addEventListener("click", function () {
     var workbook = new ExcelJS.Workbook();
@@ -264,10 +277,16 @@ if (!isset($_SESSION["id_supadmin"])) {
     // simpan file
     workbook.xlsx.writeBuffer().then(function (data) {
       var blob = new Blob([data], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
-      saveAs(blob, "rekap_data.xlsx");
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, '0');
+      let mm = String(today.getMonth() + 1).padStart(2, '0');
+      let yyyy = today.getFullYear();
+
+      let filename = "Rekap_Data_Harian_" + dd + "-" + mm + "-" + yyyy + ".xlsx";
+      saveAs(blob, filename);
     });
   });
-  </script>
+</script>
 </script>
 </body>
 </html>

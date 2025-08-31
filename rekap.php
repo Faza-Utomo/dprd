@@ -113,7 +113,7 @@ function filePreview($nama_media, $file) {
               <thead>
               <tr>
                 <th>No</th>
-                <th>ID Pengajuan</th>
+                <th>Tanggal Pengajuan</th>
                 <th>Nama Media</th>
                 <th>Nama Perusahaan</th>
                 <th>Pengajuan Langganan</th>
@@ -140,12 +140,12 @@ function filePreview($nama_media, $file) {
                     ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['id_pengajuan']; ?></td>
+                      <td><?php echo $d['tanggal']; ?></td>
                       <td><?php echo $d['nama_media']; ?></td>
                       <td><?php echo $d['nama_perusahaan']; ?></td>
                       <td><?php echo $d['pengajuan_langganan']; ?></td>
                       <td><?php echo $d['nama_wartawan']; ?></td>
-                      <td><?php echo $d['harga']; ?></td>
+                      <td><?= "Rp " . number_format($d['harga'], 0, ',', '.'); ?></td>
                       <td><?php echo $d['kontak']; ?></td>
                       <td><?php echo $d['nomor_rekening']; ?></td>
                       <!-- tombol preview -->
@@ -179,7 +179,6 @@ function filePreview($nama_media, $file) {
               <thead>
               <tr>
                 <th>No</th>
-                <th>ID Pengajuan</th>
                 <th>Nama Media</th>
                 <th>Nama Perusahaan</th>
                 <th>Pengajuan Langganan</th>
@@ -194,24 +193,22 @@ function filePreview($nama_media, $file) {
                 <th>Surat Penawaran Kerjasama</th>
                 <th>Keterangan</th>
                 <th>Status</th>
-                <th>Aksi</th>
               </tr>
               </thead>
               <tbody>
                 <?php
                   include 'koneksi.php';
                   $no = 1;
-                  $data = mysqli_query($koneksi , "select * from media where status='Di Setujui' or status='Tidak Disetujui'");
+                  $data = mysqli_query($koneksi , "select * from media where status='Disetujui' or status='Tidak Disetujui'");
                   while ($d = mysqli_fetch_array($data)){
                     ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['id_pengajuan']; ?></td>
                       <td><?php echo $d['nama_media']; ?></td>
                       <td><?php echo $d['nama_perusahaan']; ?></td>
                       <td><?php echo $d['pengajuan_langganan']; ?></td>
                       <td><?php echo $d['nama_wartawan']; ?></td>
-                      <td><?php echo $d['harga']; ?></td>
+                      <td><?= "Rp " . number_format($d['harga'], 0, ',', '.'); ?></td>
                       <td><?php echo $d['kontak']; ?></td>
                       <td><?php echo $d['nomor_rekening']; ?></td>
                       <!-- tombol preview -->

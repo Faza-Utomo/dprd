@@ -12,9 +12,10 @@ $nama_media          = $_POST['nama_media'];
 $nama_perusahaan     = $_POST['nama_perusahaan'];
 $pengajuan_langganan = $_POST['pengajuan_langganan'];
 $nama_wartawan       = $_POST['nama_wartawan'];
-$harga               = preg_replace('/[^0-9]/', '', $_POST['harga']);
+$harga               = $_POST['harga'];
 $kontak              = $_POST['kontak'];
 $norekening          = $_POST['norekening']; // ini dari form, ke DB masuk ke kolom nomor_rekening
+$tanggal             = $_POST['tanggal'];
 $keterangan          = $_POST['keterangan'];
 $status              = $_POST['status'];
 
@@ -51,9 +52,9 @@ $surat_penawaran_kerjasama = uploadFile("surat_penawaran_kerjasama", $folder_med
 
 // Simpan data ke database
 $sql = "INSERT INTO media
-    (nama_media, nama_perusahaan, pengajuan_langganan, nama_wartawan, harga, kontak, nomor_rekening,
+    (nama_media, nama_perusahaan, pengajuan_langganan, nama_wartawan, harga, kontak, nomor_rekening, tanggal,
     ktp_pemilik_perusahaan, npwp_perusahaan, kta_wartawan, cv_perusahaan, surat_penawaran_kerjasama, keterangan, status)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $koneksi->prepare($sql);
 
@@ -61,10 +62,11 @@ if (!$stmt) {
     die("Prepare failed: " . $koneksi->error);
 }
 
-// 14 parameter = 14 huruf "s"
+// ✅ 15 parameter = 15 huruf "s"
 $stmt->bind_param(
-    "ssssssssssssss",
+    "sssssssssssssss",
     $nama_media, $nama_perusahaan, $pengajuan_langganan, $nama_wartawan, $harga, $kontak, $norekening,
+    $tanggal,
     $ktp_pemilik_perusahaan, $npwp_perusahaan, $kta_wartawan, $cv_perusahaan, $surat_penawaran_kerjasama,
     $keterangan, $status
 );

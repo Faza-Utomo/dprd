@@ -73,6 +73,9 @@ function filePreview($nama_media, $file) {
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -157,12 +160,12 @@ function filePreview($nama_media, $file) {
               <thead>
               <tr>
                 <th>No</th>
-                <th>ID Pengajuan</th>
+                <th>Tanggal Pengajuan</th>
                 <th>Nama Media</th>
                 <th>Nama Perusahaan</th>
                 <th>Pengajuan Langganan</th>
                 <th>Nama Wartawan</th>
-                <th>Harga</th>
+                <th>Harga per eksemplar</th>
                 <th>Nomor Kontak</th>
                 <th>Nomor Rekening</th>
                 <th>KTP Pemilik Perusahaan</th>
@@ -184,12 +187,12 @@ function filePreview($nama_media, $file) {
                     ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['id_pengajuan']; ?></td>
+                      <td><?php echo $d['tanggal']; ?></td>
                       <td><?php echo $d['nama_media']; ?></td>
                       <td><?php echo $d['nama_perusahaan']; ?></td>
                       <td><?php echo $d['pengajuan_langganan']; ?></td>
                       <td><?php echo $d['nama_wartawan']; ?></td>
-                      <td><?php echo $d['harga']; ?></td>
+                      <td><?= "Rp " . number_format($d['harga'], 0, ',', '.'); ?></td>
                       <td><?php echo $d['kontak']; ?></td>
                       <td><?php echo $d['nomor_rekening']; ?></td>
                       <!-- tombol preview -->
@@ -202,6 +205,68 @@ function filePreview($nama_media, $file) {
                       <td><?php echo $d['status']; ?></td>
                       <td><input type="button" class="btn btn-primary" name="status" value="Setujui" onclick="location.href='../../../status_setuju.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>'"></input></td>
                       <td><input type="button" class="btn btn-danger" name="status" value="Tolak" onclick="location.href='../../../status_ditolak.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>'"></input></td>
+                    </tr>
+                    <?php
+                  }
+                    ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Data hasil pengajuan dari Media</h3>
+        </div>
+        <div class="box-body">
+          <div style="overflow-x:auto;">
+            <table id="tabel2" class="table table-bordered table-hover">
+              <thead>
+              <tr>
+                <th>No</th>
+                <th>Tanggal Pengajuan</th>
+                <th>Nama Media</th>
+                <th>Nama Perusahaan</th>
+                <th>Pengajuan Langganan</th>
+                <th>Nama Wartawan</th>
+                <th>Harga per eksemplar</th>
+                <th>Nomor Kontak</th>
+                <th>Nomor Rekening</th>
+                <th>KTP Pemilik Perusahaan</th>
+                <th>NPWP Perusahaan</th>
+                <th>KTA Wartawan</th>
+                <th>CV Perusahaan</th>
+                <th>Surat Penawaran Kerjasama</th>
+                <th>Keterangan</th>
+                <th>Status</th>
+              </tr>
+              </thead>
+              <tbody>
+                <?php
+                  include '../../../koneksi.php';
+                  $no = 1;
+                  $data = mysqli_query($koneksi , "select * from media where status='Disetujui' or status='Tidak Disetujui'");
+                  while ($d = mysqli_fetch_array($data)){
+                    ?>
+                    <tr>
+                      <td><?php echo $no++; ?></td>
+                      <td><?php echo $d['tanggal']; ?></td>
+                      <td><?php echo $d['nama_media']; ?></td>
+                      <td><?php echo $d['nama_perusahaan']; ?></td>
+                      <td><?php echo $d['pengajuan_langganan']; ?></td>
+                      <td><?php echo $d['nama_wartawan']; ?></td>
+                      <td><?= "Rp " . number_format($d['harga'], 0, ',', '.'); ?></td>
+                      <td><?php echo $d['kontak']; ?></td>
+                      <td><?php echo $d['nomor_rekening']; ?></td>
+                      <!-- tombol preview -->
+                      <td><?php echo filePreview($d['nama_media'], $d['ktp_pemilik_perusahaan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['npwp_perusahaan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['kta_wartawan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['cv_perusahaan']); ?></td>
+                      <td><?php echo filePreview($d['nama_media'], $d['surat_penawaran_kerjasama']); ?></td>
+                      
+                      <td><?php echo $d['keterangan']; ?></td>
+                      <td><?php echo $d['status']; ?></td>
                     </tr>
                     <?php
                   }
@@ -248,11 +313,109 @@ function filePreview($nama_media, $file) {
 <script>
   const lightbox = GLightbox({ selector: '.glightbox' });
 </script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree();
+
+    // aktifkan datatable2
+    $('#tabel2').DataTable({
+      "paging": true,        // ada pagination
+      "ordering": true,      // bisa sorting
+      "info": true,          // info jumlah data
+      "order": [[0, "asc"]], // default urutkan kolom pertama (No) ASC
+       columnDefs: [
+        { orderable: true, targets: [0, 1, 2, 3, 5, 14] },   // kolom yang bisa sort
+        { orderable: false, targets: '_all' }                // sisanya tidak bisa sort
+      ],
+      "language": {
+        "search": "Cari:",
+        "lengthMenu": "Tampilkan _MENU_ data per halaman",
+        "zeroRecords": "Data tidak ditemukan",
+        "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
+        "infoEmpty": "Tidak ada data tersedia",
+        "infoFiltered": "(difilter dari _MAX_ total data)"
+      }
+    });
+  });
+
+</script>
+<!-- Export Excel (ExcelJS + FileSaver) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+  <script>
+  document.getElementById("btnExport").addEventListener("click", function () {
+    var workbook = new ExcelJS.Workbook();
+    var worksheet = workbook.addWorksheet("Rekap Data");
+
+    // ambil tabel HTML
+    var tabel = document.getElementById("tabel2");
+    var rows = tabel.querySelectorAll("tr");
+
+    rows.forEach((row, rowIndex) => {
+      let cells = row.querySelectorAll("th, td");
+      let rowData = [];
+      cells.forEach((cell) => {
+        rowData.push(cell.innerText);
+      });
+      worksheet.addRow(rowData);
+
+      // styling header
+      if (rowIndex === 0) {
+        cells.forEach((cell, colIndex) => {
+          let excelCell = worksheet.getRow(1).getCell(colIndex+1);
+          excelCell.font = { bold: true };
+          excelCell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFD9D9D9" } };
+          excelCell.border = {
+            top: {style:'thin'},
+            left: {style:'thin'},
+            bottom: {style:'thin'},
+            right: {style:'thin'}
+          };
+        });
+      }
+    });
+
+    // kasih border semua cell
+    worksheet.eachRow(function(row) {
+      row.eachCell(function(cell) {
+        cell.border = {
+          top: {style:'thin'},
+          left: {style:'thin'},
+          bottom: {style:'thin'},
+          right: {style:'thin'}
+        };
+      });
+    });
+
+    // auto width kolom
+    worksheet.columns.forEach(function (column) {
+      let maxLength = 0;
+      column.eachCell({ includeEmpty: true }, function (cell) {
+        let columnLength = cell.value ? cell.value.toString().length : 10;
+        if (columnLength > maxLength ) {
+          maxLength = columnLength;
+        }
+      });
+      column.width = maxLength < 10 ? 10 : maxLength + 2;
+    });
+
+    // simpan file
+    workbook.xlsx.writeBuffer().then(function (data) {
+      var blob = new Blob([data], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, '0');
+      let mm = String(today.getMonth() + 1).padStart(2, '0');
+      let yyyy = today.getFullYear();
+
+      let filename = "rekap_databulanan_" + dd + "-" + mm + "-" + yyyy + ".xlsx";
+      saveAs(blob, filename);
+    });
   });
 </script>
+
 </body>
 </html>
