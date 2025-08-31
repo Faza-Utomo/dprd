@@ -124,30 +124,46 @@ if (!isset($_SESSION["id_supadmin"])) {
             <thead>
               <tr>
                 <th>No</th>
-                    <th>Nama Media</th>
-                    <th>Harga per Eksemplar</th>
-                    <th>Koran yang dikirim perkiriman</th>
-                    <th>Total pengiriman (Dalam 1 bulan)</th>
-                    <th>Harga perbulan</th>
-                    <th>Harga pertriwulan</th>
+                  <th>Id Bulanan</th>
+                  <th>Id Harian</th>
+                  <th>Nama Media</th>
+                  <th>Bulan</th>
+                  <th>Total pengiriman (Dalam 1 bulan)</th>
+                  <th>Eksemplar</th>
+                  <th>Harga perbulan</th>
+                  <th>Harga pertriwulan</th>
               </tr>
             </thead>
             <tbody>
                 <?php
                   include '../../../koneksi.php';
                   $no = 1;
-                  $data = mysqli_query($koneksi , "select * from bulanan");
+                  $data = mysqli_query($koneksi , "
+                      SELECT 
+                          m.nama_media,
+                          MONTH(h.tanggal) AS bulan,
+                          YEAR(h.tanggal) AS tahun,
+                          COUNT(DISTINCT DATE(h.tanggal)) AS total_hari,
+                          SUM(h.eksemplar) AS total_pengiriman,
+                          m.harga AS harga_per_eksemplar,
+                          (SUM(h.eksemplar) * m.harga) AS harga_perbulan,
+                          (SUM(h.eksemplar) * m.harga * 3) AS harga_triwulan
+                      FROM harian h
+                      JOIN media m ON h.id_pengajuan = m.id_pengajuan
+                      GROUP BY m.nama_media, m.harga, YEAR(h.tanggal), MONTH(h.tanggal)
+                      ORDER BY tahun DESC, bulan DESC
+                  ");
                   while ($d = mysqli_fetch_array($data)){
                     ?>
                     <tr>
-                      <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['id_bulanan']; ?></td>
-                      <td><?php echo $d['nama_media']; ?></td>
-                      <td><?php echo $d['harga']; ?></td>
-                      <td><?php echo $d['eksemplar']; ?></td>
-                      <td><?php echo $d['total_pengiriman']; ?></td>
-                      <td><?php echo $d['harga_bulanan']; ?></td>
-                      <td><?php echo $d['harga_triwulanan']; ?></td>
+                      <td><?= $no++; ?></td>
+                      <td><?= $d['nama_media']; ?></td>
+                      <td><?= $d['bulan']."-".$d['tahun']; ?></td>
+                      <td><?= $d['total_hari']." hari"; ?></td>
+                      <td><?= $d['total_pengiriman']." eksemplar"; ?></td>
+                      <td><?= "Rp " . number_format($d['harga_per_eksemplar'], 0, ',', '.'); ?></td>
+                      <td><?= "Rp " . number_format($d['harga_perbulan'], 0, ',', '.'); ?></td>
+                      <td><?= "Rp " . number_format($d['harga_triwulan'], 0, ',', '.'); ?></td>
                     <?php
                   }
                     ?>
