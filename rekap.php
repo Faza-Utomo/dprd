@@ -176,9 +176,13 @@ function filePreview($nama_media, $file) {
         <div class="box-body">
           <div style="overflow-x:auto;">
             <table id="tabel2" class="table table-bordered table-hover">
+              <button id="btnExport" class="btn btn-success" style="margin-bottom:10px;">
+                <i class="fa fa-file-excel-o"></i> Export ke Excel
+              </button>
               <thead>
               <tr>
                 <th>No</th>
+                <th>Tanggal Pengajuan</th>
                 <th>Nama Media</th>
                 <th>Nama Perusahaan</th>
                 <th>Pengajuan Langganan</th>
@@ -204,6 +208,7 @@ function filePreview($nama_media, $file) {
                     ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
+                      <td><?php echo $d['tanggal']; ?></td>
                       <td><?php echo $d['nama_media']; ?></td>
                       <td><?php echo $d['nama_perusahaan']; ?></td>
                       <td><?php echo $d['pengajuan_langganan']; ?></td>

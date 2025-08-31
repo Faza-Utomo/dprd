@@ -222,6 +222,10 @@ if (!isset($_SESSION["id_supadmin"])) {
       "ordering": true,      // bisa sorting
       "info": true,          // info jumlah data
       "order": [[0, "asc"]], // default urutkan kolom pertama (No) ASC
+      columnDefs: [
+        { orderable: true, targets: [0, 1, 2, 5, 6, 7] },   // kolom yang bisa sort
+        { orderable: false, targets: '_all' }                // sisanya tidak bisa sort
+      ],
       "language": {
         "search": "Cari:",
         "lengthMenu": "Tampilkan _MENU_ data per halaman",

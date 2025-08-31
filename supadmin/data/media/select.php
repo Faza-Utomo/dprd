@@ -221,6 +221,9 @@ function filePreview($nama_media, $file) {
         <div class="box-body">
           <div style="overflow-x:auto;">
             <table id="tabel2" class="table table-bordered table-hover">
+              <button id="btnExport" class="btn btn-success" style="margin-bottom:10px;">
+                <i class="fa fa-file-excel-o"></i> Export ke Excel
+              </button>
               <thead>
               <tr>
                 <th>No</th>
@@ -327,7 +330,7 @@ function filePreview($nama_media, $file) {
       "info": true,          // info jumlah data
       "order": [[0, "asc"]], // default urutkan kolom pertama (No) ASC
        columnDefs: [
-        { orderable: true, targets: [0, 1, 2, 3, 5, 14] },   // kolom yang bisa sort
+        { orderable: true, targets: [0, 1, 2, 3, 4, 6, 15] },   // kolom yang bisa sort
         { orderable: false, targets: '_all' }                // sisanya tidak bisa sort
       ],
       "language": {
@@ -411,7 +414,7 @@ function filePreview($nama_media, $file) {
       let mm = String(today.getMonth() + 1).padStart(2, '0');
       let yyyy = today.getFullYear();
 
-      let filename = "rekap_databulanan_" + dd + "-" + mm + "-" + yyyy + ".xlsx";
+      let filename = "Rekap_Pengajuan_Media_" + dd + "-" + mm + "-" + yyyy + ".xlsx";
       saveAs(blob, filename);
     });
   });

@@ -85,58 +85,65 @@ $harianList = mysqli_query($koneksi, "SELECT id_harian, tanggal, nama_media FROM
 
             <form action="proses_bulanan.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
 
-              <div class="row gy-4">
-
-                <!-- Dropdown ID Harian -->
-                <div class="col-md-12">
-                  <label for="id_harian" class="form-label">Pilih Data Harian</label>
-                  <select name="id_harian" id="id_harian" class="form-control" required>
-                    <option value="">-- Pilih Data Harian --</option>
-                    <?php while ($row = mysqli_fetch_assoc($harianList)) { ?>
-                      <option value="<?= $row['id_harian'] ?>">
-                        <?= $row['id_harian'] ?> - <?= $row['nama_media'] ?> (<?= $row['tanggal'] ?>)
-                      </option>
-                    <?php } ?>
-                  </select>
-                </div>
-
-                <!-- Bulan -->
-                <div class="col-md-6">
-                  <label for="bulan" class="form-label">Bulan</label>
-                  <input type="text" name="bulan" id="bulan" class="form-control" placeholder="Contoh: Agustus 2025" required>
-                </div>
-
-                <!-- Jumlah Hari -->
-                <div class="col-md-6">
-                  <label for="jml_hari" class="form-label">Jumlah Hari</label>
-                  <input type="number" name="jml_hari" id="jml_hari" class="form-control" required>
-                </div>
-
-                <!-- Eksemplar -->
-                <div class="col-md-6">
-                  <label for="eksemplar" class="form-label">Eksemplar</label>
-                  <input type="number" name="eksemplar" id="eksemplar" class="form-control" required>
-                </div>
-
-                <!-- Perbulan (readonly) -->
-                <div class="col-md-6">
-                  <label for="perbulan" class="form-label">Per Bulan</label>
-                  <input type="text" name="perbulan" id="perbulan" class="form-control" readonly>
-                </div>
-
-                <!-- Triwulan (readonly) -->
-                <div class="col-md-12">
-                  <label for="triwulan" class="form-label">Triwulan</label>
-                  <input type="text" name="triwulan" id="triwulan" class="form-control" readonly>
-                </div>
-
-                <!-- Tombol Simpan -->
-                <div class="col-md-12 text-center">
-                  <button type="submit" class="btn btn-primary">Simpan Data</button>
-                </div>
-
-              </div>
-            </form>
+              <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Data Rekap Bulanan</h3>
+        </div>
+        <div class="box-body">
+          <!-- contoh tabel -->
+          <table id="tabel2" class="table table-bordered table-striped" style="table-layout: auto; word-wrap: break-word;">
+            <button id="btnExport" class="btn btn-success" style="margin-bottom:10px;">
+              <i class="fa fa-file-excel-o"></i> Export ke Excel
+            </button> 
+            <thead>
+              <tr>
+                <th>No</th>
+                    <th>Nama Media</th>
+                    <th>Periode Pengiriman</th>
+                    <th>Total Pengiriman yang telah<br>dilakukan dalam 1 bulan</th>
+                    <th>Total pengiriman (Dalam 1 bulan)</th>
+                    <th>Harga pereksemplar</th>
+                    <th>Harga perbulan</th>
+                    <th>Harga pertriwulan <br> (perkiraan)</th>
+              </tr>
+            </thead>
+            <tbody>
+                <?php
+                  include 'koneksi.php';
+                  $no = 1;
+                  $data = mysqli_query($koneksi , "
+                    SELECT 
+                        m.nama_media,
+                        MONTH(h.tanggal) AS bulan,
+                        YEAR(h.tanggal) AS tahun,
+                        COUNT(DISTINCT DATE(h.tanggal)) AS total_hari,
+                        SUM(h.eksemplar) AS total_pengiriman,
+                        m.harga AS harga_per_eksemplar,
+                        (SUM(h.eksemplar) * m.harga) AS harga_perbulan,
+                        (SUM(h.eksemplar) * m.harga * 3) AS harga_triwulan
+                    FROM harian h
+                    JOIN media m ON h.id_pengajuan = m.id_pengajuan
+                    GROUP BY m.nama_media, m.harga, YEAR(h.tanggal), MONTH(h.tanggal)
+                    ORDER BY tahun DESC, bulan DESC
+                ");
+                  while ($d = mysqli_fetch_array($data)){
+                    ?>
+                    <tr>
+                      <td><?= $no++; ?></td>
+                      <td><?= $d['nama_media']; ?></td>
+                      <td><?= $d['bulan']."-".$d['tahun']; ?></td>
+                      <td><?= $d['total_hari']." x dalam Sebulan"; ?></td>
+                      <td><?= $d['total_pengiriman']." eksemplar"; ?></td>
+                      <td><?= "Rp " . number_format($d['harga_per_eksemplar'], 0, ',', '.'); ?></td>
+                      <td><?= "Rp " . number_format($d['harga_perbulan'], 0, ',', '.'); ?></td>
+                      <td><?= "Rp " . number_format($d['harga_triwulan'], 0, ',', '.'); ?></td>
+                    <?php
+                  }
+                    ?>
+              </tbody>
+          </table>
+        </div>
+      </div>
 
           </div>
         </div>
