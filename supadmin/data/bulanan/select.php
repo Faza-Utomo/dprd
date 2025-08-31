@@ -299,7 +299,7 @@ if (!isset($_SESSION["id_supadmin"])) {
       column.width = maxLength < 10 ? 10 : maxLength + 2;
     });
 
-    // simpan file
+    // simpan files
     workbook.xlsx.writeBuffer().then(function (data) {
       var blob = new Blob([data], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
       let today = new Date();
