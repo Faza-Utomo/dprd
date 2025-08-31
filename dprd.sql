@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2025 at 07:24 AM
+-- Generation Time: Aug 31, 2025 at 12:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -59,6 +59,14 @@ CREATE TABLE `bulanan` (
   `triwulan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `bulanan`
+--
+
+INSERT INTO `bulanan` (`id_bulanan`, `id_harian`, `bulan`, `jml_hari`, `eksemplar`, `perbulan`, `triwulan`) VALUES
+(3, 3, 'Agustus', 31, 0, '0', '0'),
+(4, 10, 'Agustus', 31, 20, '18600000', '55800000');
+
 -- --------------------------------------------------------
 
 --
@@ -81,7 +89,15 @@ CREATE TABLE `harian` (
 INSERT INTO `harian` (`id_harian`, `id_pengajuan`, `nama_media`, `harga`, `eksemplar`, `tanggal`) VALUES
 (2, 6, 'Pangsit Media', '30000', 0, '2025-08-31 08:58:00'),
 (3, 7, 'Mie Ayam Hitam', '10000', 0, '2025-08-29 08:59:00'),
-(7, 5, 'Awikwok Media', '15000', 51, '2025-08-31 09:01:00');
+(7, 5, 'Awikwok Media', '15000', 51, '2025-08-31 09:01:00'),
+(9, 5, 'Awikwok Media', '15000', 20, '2025-08-31 12:53:00'),
+(10, 6, 'Pangsit Media', '30000', 20, '2025-08-31 13:00:00'),
+(11, 5, 'Awikwok Media', '15000', 300, '2025-08-31 13:51:00'),
+(12, 5, 'Awikwok Media', '15000', 100, '2025-08-01 13:53:00'),
+(13, 5, 'Awikwok Media', '15000', 20, '2025-08-29 13:54:00'),
+(14, 6, 'Pangsit Media', '30000', 30, '2025-08-31 13:59:00'),
+(15, 6, 'Pangsit Media', '30000', 50, '2025-08-20 14:00:00'),
+(16, 5, 'Awikwok Media', '15000', 30, '2025-09-01 14:21:00');
 
 -- --------------------------------------------------------
 
@@ -98,11 +114,12 @@ CREATE TABLE `media` (
   `harga` varchar(15) NOT NULL,
   `kontak` varchar(14) NOT NULL,
   `nomor_rekening` varchar(16) NOT NULL,
-  `ktp_pemilik_perusahaan` varchar(255) NOT NULL,
-  `npwp_perusahaan` varchar(255) NOT NULL,
-  `kta_wartawan` varchar(255) NOT NULL,
-  `cv_perusahaan` varchar(255) NOT NULL,
-  `surat_penawaran_kerjasama` varchar(255) NOT NULL,
+  `tanggal` datetime NOT NULL,
+  `ktp_pemilik_perusahaan` varchar(255) DEFAULT NULL,
+  `npwp_perusahaan` varchar(255) DEFAULT NULL,
+  `kta_wartawan` varchar(255) DEFAULT NULL,
+  `cv_perusahaan` varchar(255) DEFAULT NULL,
+  `surat_penawaran_kerjasama` varchar(255) DEFAULT NULL,
   `keterangan` text NOT NULL,
   `status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -111,10 +128,16 @@ CREATE TABLE `media` (
 -- Dumping data for table `media`
 --
 
-INSERT INTO `media` (`id_pengajuan`, `nama_media`, `nama_perusahaan`, `pengajuan_langganan`, `nama_wartawan`, `harga`, `kontak`, `nomor_rekening`, `ktp_pemilik_perusahaan`, `npwp_perusahaan`, `kta_wartawan`, `cv_perusahaan`, `surat_penawaran_kerjasama`, `keterangan`, `status`) VALUES
-(5, 'Awikwok Media', 'PT Aaowkoawk sejahtera', 'Majalah', 'Ujang Markonah', '15000', '08123456789', '12345678', '1756275545_doraemonPNG.png', '1756275545_dprd test JPEG.jpeg', '1756275545_dprd test JPEG 3.jpeg', '1756275545_dprd test JPEG 2.jpeg', '1756275545_PROPOSAL KERJA PRAKTIK.pdf', 'Ipsum lorem ipsum lore ini hanya sebuah keterangan untuk pengetest an', 'Tidak Disetujui'),
-(6, 'Pangsit Media', 'Pangsit Enjoyer Corporation', 'Majalah', 'Mamat Sumamat', '30000', '0812345678', '12345678', '1756353665_doraemonPNG.png', '1756353665_dprd test JPEG.jpeg', '1756353665_dprd test JPEG 2.jpeg', '1756353665_dprd test JPEG 3.jpeg', '1756353665_Tugas Penyerta Pertemuan 8 SP Metnum_2250081160_M Naufal Faza Utomo.pdf', 'Iki buat ngetest su\r\n', 'Disetujui'),
-(7, 'Mie Ayam Hitam', 'Ayam Hitam legam corp.', 'MediaOnline', 'Usep Sukasep', '10000', '08123456789', '12345678', '1756353775_omah.jpeg', '1756353775_Tugas SP Metnum 2_2250081160_M Naufal Faza Utomo.jpg', '1756353775_dprd test JPEG 3.jpeg', '1756353775_doraemonPNG.png', '1756353775_MODUL TEORI GAME 2025 UNITY 3D.pdf', 'Test lagiiiiiii', 'Disetujui');
+INSERT INTO `media` (`id_pengajuan`, `nama_media`, `nama_perusahaan`, `pengajuan_langganan`, `nama_wartawan`, `harga`, `kontak`, `nomor_rekening`, `tanggal`, `ktp_pemilik_perusahaan`, `npwp_perusahaan`, `kta_wartawan`, `cv_perusahaan`, `surat_penawaran_kerjasama`, `keterangan`, `status`) VALUES
+(5, 'Awikwok Media', 'PT Aaowkoawk sejahtera', 'Majalah', 'Ujang Markonah', '15000', '08123456789', '12345678', '2025-08-31 16:09:17', '1756275545_doraemonPNG.png', '1756275545_dprd test JPEG.jpeg', '1756275545_dprd test JPEG 3.jpeg', '1756275545_dprd test JPEG 2.jpeg', '1756275545_PROPOSAL KERJA PRAKTIK.pdf', 'Ipsum lorem ipsum lore ini hanya sebuah keterangan untuk pengetest an', 'Tidak Disetujui'),
+(6, 'Pangsit Media', 'Pangsit Enjoyer Corporation', 'Majalah', 'Mamat Sumamat', '30000', '0812345678', '12345678', '2025-08-31 16:09:17', '1756353665_doraemonPNG.png', '1756353665_dprd test JPEG.jpeg', '1756353665_dprd test JPEG 2.jpeg', '1756353665_dprd test JPEG 3.jpeg', '1756353665_Tugas Penyerta Pertemuan 8 SP Metnum_2250081160_M Naufal Faza Utomo.pdf', 'Iki buat ngetest su\r\n', 'Disetujui'),
+(7, 'Mie Ayam Hitam', 'Ayam Hitam legam corp.', 'MediaOnline', 'Usep Sukasep', '10000', '08123456789', '12345678', '2025-08-31 16:09:17', '1756353775_omah.jpeg', '1756353775_Tugas SP Metnum 2_2250081160_M Naufal Faza Utomo.jpg', '1756353775_dprd test JPEG 3.jpeg', '1756353775_doraemonPNG.png', '1756353775_MODUL TEORI GAME 2025 UNITY 3D.pdf', 'Test lagiiiiiii', 'Disetujui'),
+(8, 'Kratos Video', 'GOW Corp.', 'Majalah', 'Atrius', '30000', '08123456789', '12345678', '2025-08-31 16:09:17', NULL, NULL, NULL, NULL, NULL, '', 'Disetujui'),
+(9, 'Markonang Media', 'PT Hitam Abadi', 'BeritaOnline', 'Ipin Aripin', '20000', '08123456789', '12345678', '2025-08-31 16:09:17', NULL, NULL, NULL, NULL, NULL, 'r', 'Menunggu Persetujuan'),
+(10, 'Arab Media', 'Arabian Corp', 'Majalah', 'Uceng', '25000', '08123456', '12345678', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL, NULL, '12', 'Kesempatan Edit'),
+(11, 'adasda', 'asdasd', 'Tabloid', 'asdasd', '25000', '08123456', '123123', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL, NULL, '11', 'Kesempatan Edit'),
+(12, 'rewew', 'wewqe', 'Tabloid', 'qweqwe', '25000', '08123456', '12345678', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL, NULL, '', 'Kesempatan Edit'),
+(13, 'ser', 'sadaasdasdsd', 'Majalah', 'Aseps', '15000', '08123456', '12345678', '2025-08-31 16:26:00', NULL, NULL, NULL, NULL, NULL, '', 'Disetujui');
 
 -- --------------------------------------------------------
 
@@ -159,8 +182,7 @@ ALTER TABLE `bulanan`
 -- Indexes for table `harian`
 --
 ALTER TABLE `harian`
-  ADD PRIMARY KEY (`id_harian`),
-  ADD UNIQUE KEY `id_pengajuan` (`id_pengajuan`);
+  ADD PRIMARY KEY (`id_harian`);
 
 --
 -- Indexes for table `media`
@@ -188,19 +210,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bulanan`
 --
 ALTER TABLE `bulanan`
-  MODIFY `id_bulanan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_bulanan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `harian`
 --
 ALTER TABLE `harian`
-  MODIFY `id_harian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_harian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id_pengajuan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pengajuan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `supadmin`
