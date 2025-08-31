@@ -120,7 +120,7 @@
               </div>
 
               <div class="col-md-6">
-                <label for="tanggal" class="form-label">Tanggal</label>
+                <label for="tanggal" class="form-label">Tanggal Pengajuan</label>
                 <input type="datetime-local" name="tanggal" id="tanggal" class="form-control" required>
               </div>
 
