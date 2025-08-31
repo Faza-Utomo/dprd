@@ -81,69 +81,70 @@ $harianList = mysqli_query($koneksi, "SELECT id_harian, tanggal, nama_media FROM
       <div class="container" data-aos="fade-up" data-aos-delay="200">
 
         <div class="row justify-content-center">
-          <div class="col-lg-8">
+          <div class="col-lg-12">
 
-            <form action="proses_bulanan.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
+            <div class="box">
+              <div class="box-header with-border d-flex justify-content-between align-items-center">
+                <h3 class="box-title">Data Rekap Bulanan</h3>
+                <button id="btnExport" class="btn btn-success">
+                  <i class="bi bi-file-earmark-excel"></i> Export ke Excel
+                </button>
+              </div>
+              <div class="box-body">
 
-              <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Data Rekap Bulanan</h3>
-        </div>
-        <div class="box-body">
-          <!-- contoh tabel -->
-          <table id="tabel2" class="table table-bordered table-striped" style="table-layout: auto; word-wrap: break-word;">
-            <button id="btnExport" class="btn btn-success" style="margin-bottom:10px;">
-              <i class="fa fa-file-excel-o"></i> Export ke Excel
-            </button> 
-            <thead>
-              <tr>
-                <th>No</th>
-                    <th>Nama Media</th>
-                    <th>Periode Pengiriman</th>
-                    <th>Total Pengiriman yang telah<br>dilakukan dalam 1 bulan</th>
-                    <th>Total pengiriman (Dalam 1 bulan)</th>
-                    <th>Harga pereksemplar</th>
-                    <th>Harga perbulan</th>
-                    <th>Harga pertriwulan <br> (perkiraan)</th>
-              </tr>
-            </thead>
-            <tbody>
-                <?php
-                  include 'koneksi.php';
-                  $no = 1;
-                  $data = mysqli_query($koneksi , "
-                    SELECT 
-                        m.nama_media,
-                        MONTH(h.tanggal) AS bulan,
-                        YEAR(h.tanggal) AS tahun,
-                        COUNT(DISTINCT DATE(h.tanggal)) AS total_hari,
-                        SUM(h.eksemplar) AS total_pengiriman,
-                        m.harga AS harga_per_eksemplar,
-                        (SUM(h.eksemplar) * m.harga) AS harga_perbulan,
-                        (SUM(h.eksemplar) * m.harga * 3) AS harga_triwulan
-                    FROM harian h
-                    JOIN media m ON h.id_pengajuan = m.id_pengajuan
-                    GROUP BY m.nama_media, m.harga, YEAR(h.tanggal), MONTH(h.tanggal)
-                    ORDER BY tahun DESC, bulan DESC
-                ");
-                  while ($d = mysqli_fetch_array($data)){
-                    ?>
-                    <tr>
-                      <td><?= $no++; ?></td>
-                      <td><?= $d['nama_media']; ?></td>
-                      <td><?= $d['bulan']."-".$d['tahun']; ?></td>
-                      <td><?= $d['total_hari']." x dalam Sebulan"; ?></td>
-                      <td><?= $d['total_pengiriman']." eksemplar"; ?></td>
-                      <td><?= "Rp " . number_format($d['harga_per_eksemplar'], 0, ',', '.'); ?></td>
-                      <td><?= "Rp " . number_format($d['harga_perbulan'], 0, ',', '.'); ?></td>
-                      <td><?= "Rp " . number_format($d['harga_triwulan'], 0, ',', '.'); ?></td>
-                    <?php
-                  }
-                    ?>
-              </tbody>
-          </table>
-        </div>
-      </div>
+                <div class="table-responsive">
+                  <table id="tabel2" class="table table-bordered table-striped" style="width:100%; table-layout:auto; word-wrap:break-word;">
+                    <thead class="table-dark">
+                      <tr>
+                        <th>No</th>
+                        <th>Nama Media</th>
+                        <th>Periode Pengiriman</th>
+                        <th>Total Hari Pengiriman</th>
+                        <th>Total Eksemplar (1 bulan)</th>
+                        <th>Harga Pereksemplar</th>
+                        <th>Harga Perbulan</th>
+                        <th>Harga Pertriwulan (perkiraan)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $no = 1;
+                      $data = mysqli_query($koneksi, "
+                        SELECT 
+                            m.nama_media,
+                            MONTH(h.tanggal) AS bulan,
+                            YEAR(h.tanggal) AS tahun,
+                            COUNT(DISTINCT DATE(h.tanggal)) AS total_hari,
+                            SUM(h.eksemplar) AS total_pengiriman,
+                            m.harga AS harga_per_eksemplar,
+                            (SUM(h.eksemplar) * m.harga) AS harga_perbulan,
+                            (SUM(h.eksemplar) * m.harga * 3) AS harga_triwulan
+                        FROM harian h
+                        JOIN media m ON h.id_pengajuan = m.id_pengajuan
+                        GROUP BY m.nama_media, m.harga, YEAR(h.tanggal), MONTH(h.tanggal)
+                        ORDER BY tahun DESC, bulan DESC
+                      ");
+                      while ($d = mysqli_fetch_array($data)) {
+                      ?>
+                        <tr>
+                          <td><?= $no++; ?></td>
+                          <td><?= $d['nama_media']; ?></td>
+                          <td><?= $d['bulan'] . "-" . $d['tahun']; ?></td>
+                          <td><?= $d['total_hari'] . " hari"; ?></td>
+                          <td><?= $d['total_pengiriman'] . " eksemplar"; ?></td>
+                          <td><?= "Rp " . number_format($d['harga_per_eksemplar'], 0, ',', '.'); ?></td>
+                          <td><?= "Rp " . number_format($d['harga_perbulan'], 0, ',', '.'); ?></td>
+                          <td><?= "Rp " . number_format($d['harga_triwulan'], 0, ',', '.'); ?></td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
 
           </div>
         </div>
@@ -179,48 +180,5 @@ $harianList = mysqli_query($koneksi, "SELECT id_harian, tanggal, nama_media FROM
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-
-  <!-- Custom Script untuk hitung otomatis -->
-  <script>
-    let harga = 0;
-
-    // Ambil harga berdasarkan id_harian (AJAX)
-    document.getElementById("id_harian").addEventListener("change", function () {
-      const idHarian = this.value;
-
-      if (idHarian) {
-        fetch("get_harga.php?id_harian=" + idHarian)
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              harga = parseInt(data.harga);
-              hitung();
-            }
-          });
-      } else {
-        harga = 0;
-        document.getElementById("perbulan").value = "";
-        document.getElementById("triwulan").value = "";
-      }
-    });
-
-    // Hitung otomatis perbulan & triwulan
-    function hitung() {
-      let jmlHari = parseInt(document.getElementById("jml_hari").value) || 0;
-      let eksemplar = parseInt(document.getElementById("eksemplar").value) || 0;
-
-      if (harga > 0 && jmlHari > 0 && eksemplar > 0) {
-        let perbulan = harga * jmlHari * eksemplar;
-        let triwulan = perbulan * 3;
-
-        document.getElementById("perbulan").value = "Rp " + perbulan.toLocaleString("id-ID");
-        document.getElementById("triwulan").value = "Rp " + triwulan.toLocaleString("id-ID");
-      }
-    }
-
-    document.getElementById("jml_hari").addEventListener("input", hitung);
-    document.getElementById("eksemplar").addEventListener("input", hitung);
-  </script>
-
 </body>
 </html>

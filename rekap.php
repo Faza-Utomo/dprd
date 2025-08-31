@@ -106,11 +106,11 @@ function filePreview($nama_media, $file) {
     <!-- Rekap Section -->
     <section id="rekap" class="contact section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <h1>TABEL PERBAIKAN</h1>
+        <h3>TABEL PERBAIKAN</h3>
         <div class="box-body">
           <div style="overflow-x:auto;">
             <table id="tabel1" class="table table-bordered table-hover">
-              <thead>
+              <thead class="table-dark">
               <tr>
                 <th>No</th>
                 <th>Tanggal Pengajuan</th>
@@ -172,14 +172,16 @@ function filePreview($nama_media, $file) {
         <br>
         <br>
 
-        <h1>TABEL HASIL PERSETUJUAN</h1>
         <div class="box-body">
+          <div class="box-header with-border d-flex justify-content-between align-items-center">
+            <h3 class="box-title">Tabel Hasil Persetujuan</h3>
+              <button id="btnExport" class="btn btn-success">
+                <i class="bi bi-file-earmark-excel"></i> Export ke Excel
+              </button>
+          </div>
           <div style="overflow-x:auto;">
             <table id="tabel2" class="table table-bordered table-hover">
-              <button id="btnExport" class="btn btn-success" style="margin-bottom:10px;">
-                <i class="fa fa-file-excel-o"></i> Export ke Excel
-              </button>
-              <thead>
+              <thead class="table-dark">
               <tr>
                 <th>No</th>
                 <th>Tanggal Pengajuan</th>
