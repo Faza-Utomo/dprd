@@ -138,8 +138,36 @@ $mediaList = mysqli_query($koneksi, "SELECT id_pengajuan, nama_media, harga FROM
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer dark-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">HUMAS PROTOKOL</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Jalan Raya Cijamil RT 03 RW 06</p>
+            <p>Kampung Cijamil, Ngamprah, Kec. Ngamprah,</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+62</span></p>
+            <p><strong>Email:</strong> <span>info@dprd.com</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.php">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="https://dprd.bandungbaratkab.go.id/">Website DPRD</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="https://www.instagram.com/humasdprdkbb__/">Humas DPRD KBB</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <div class="container copyright text-center mt-4">
       <p>© <span>Copyright</span> <strong class="px-1 sitename">FajarDJ & Naufal Faza</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by <a href="https://www.instagram.com/_fajardj/">FajarDJ</a> And <a href="https://www.instagram.com/naufal.paja/">Naufal Faza</a>
+      </div>
     </div>
   </footer>
   <!-- End Footer -->
