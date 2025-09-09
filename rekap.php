@@ -199,6 +199,7 @@ function filePreview($nama_media, $file) {
                 <th>Surat Penawaran Kerjasama</th>
                 <th>Keterangan</th>
                 <th>Status</th>
+                <th>Aksi</th>
               </tr>
               </thead>
               <tbody>
@@ -224,9 +225,15 @@ function filePreview($nama_media, $file) {
                       <td><?php echo filePreview($d['nama_media'], $d['kta_wartawan']); ?></td>
                       <td><?php echo filePreview($d['nama_media'], $d['cv_perusahaan']); ?></td>
                       <td><?php echo filePreview($d['nama_media'], $d['surat_penawaran_kerjasama']); ?></td>
-
                       <td><?php echo $d['keterangan']; ?></td>
                       <td><?php echo $d['status']; ?></td>
+                      <td>
+                        <a href="delete_media.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>" 
+                          onclick="return confirm('Yakin ingin menghapus data ini?');" 
+                          class="btn btn-danger btn-sm">
+                          <i class="bi bi-trash"></i> Delete
+                        </a>
+                      </td>
                     </tr>
                     <?php
                   }
@@ -301,6 +308,8 @@ function filePreview($nama_media, $file) {
   </script>
   <!-- DataTables CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <!-- DataTables JS -->
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -401,7 +410,7 @@ function filePreview($nama_media, $file) {
         let mm = String(today.getMonth() + 1).padStart(2, '0');
         let yyyy = today.getFullYear();
 
-        let filename = "rekap_databulanan_" + dd + "-" + mm + "-" + yyyy + ".xlsx";
+        let filename = "Rekap_Hasil_Pengajuan_" + dd + "-" + mm + "-" + yyyy + ".xlsx";
         saveAs(blob, filename);
       });
     });

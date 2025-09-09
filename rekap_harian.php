@@ -181,73 +181,80 @@ function filePreview($nama_media, $file) {
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
-  <!-- Export Excel (ExcelJS + FileSaver) -->
+  </script>
+<!-- Export Excel (ExcelJS + FileSaver) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
   <script>
-  document.getElementById("btnExport").addEventListener("click", function () {
-    var workbook = new ExcelJS.Workbook();
-    var worksheet = workbook.addWorksheet("Rekap Data");
+    document.getElementById("btnExport").addEventListener("click", function () {
+      var workbook = new ExcelJS.Workbook();
+      var worksheet = workbook.addWorksheet("Rekap Data");
 
-    // ambil tabel HTML
-    var tabel = document.getElementById("tabel2");
-    var rows = tabel.querySelectorAll("tr");
+      // ambil tabel HTML
+      var tabel = document.getElementById("tabel2");
+      var rows = tabel.querySelectorAll("tr");
 
-    rows.forEach((row, rowIndex) => {
-      let cells = row.querySelectorAll("th, td");
-      let rowData = [];
-      cells.forEach((cell) => {
-        rowData.push(cell.innerText);
+      rows.forEach((row, rowIndex) => {
+        let cells = row.querySelectorAll("th, td");
+        let rowData = [];
+        cells.forEach((cell) => {
+          rowData.push(cell.innerText);
+        });
+        worksheet.addRow(rowData);
+
+        // styling header
+        if (rowIndex === 0) {
+          cells.forEach((cell, colIndex) => {
+            let excelCell = worksheet.getRow(1).getCell(colIndex+1);
+            excelCell.font = { bold: true };
+            excelCell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFD9D9D9" } };
+            excelCell.border = {
+              top: {style:'thin'},
+              left: {style:'thin'},
+              bottom: {style:'thin'},
+              right: {style:'thin'}
+            };
+          });
+        }
       });
-      worksheet.addRow(rowData);
 
-      // styling header
-      if (rowIndex === 0) {
-        cells.forEach((cell, colIndex) => {
-          let excelCell = worksheet.getRow(1).getCell(colIndex+1);
-          excelCell.font = { bold: true };
-          excelCell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFD9D9D9" } };
-          excelCell.border = {
+      // kasih border semua cell
+      worksheet.eachRow(function(row) {
+        row.eachCell(function(cell) {
+          cell.border = {
             top: {style:'thin'},
             left: {style:'thin'},
             bottom: {style:'thin'},
             right: {style:'thin'}
           };
         });
-      }
-    });
+      });
 
-    // kasih border semua cell
-    worksheet.eachRow(function(row) {
-      row.eachCell(function(cell) {
-        cell.border = {
-          top: {style:'thin'},
-          left: {style:'thin'},
-          bottom: {style:'thin'},
-          right: {style:'thin'}
-        };
+      // auto width kolom
+      worksheet.columns.forEach(function (column) {
+        let maxLength = 0;
+        column.eachCell({ includeEmpty: true }, function (cell) {
+          let columnLength = cell.value ? cell.value.toString().length : 10;
+          if (columnLength > maxLength ) {
+            maxLength = columnLength;
+          }
+        });
+        column.width = maxLength < 10 ? 10 : maxLength + 2;
+      });
+
+      // simpan file
+      workbook.xlsx.writeBuffer().then(function (data) {
+        var blob = new Blob([data], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0');
+        let yyyy = today.getFullYear();
+
+        let filename = "Rekap_Data_Harian_" + dd + "-" + mm + "-" + yyyy + ".xlsx";
+        saveAs(blob, filename);
       });
     });
-
-    // auto width kolom
-    worksheet.columns.forEach(function (column) {
-      let maxLength = 0;
-      column.eachCell({ includeEmpty: true }, function (cell) {
-        let columnLength = cell.value ? cell.value.toString().length : 10;
-        if (columnLength > maxLength ) {
-          maxLength = columnLength;
-        }
-      });
-      column.width = maxLength < 10 ? 10 : maxLength + 2;
-    });
-
-    // simpan file
-    workbook.xlsx.writeBuffer().then(function (data) {
-      var blob = new Blob([data], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
-      saveAs(blob, "rekap_data.xlsx");
-    });
-  });
   </script>
 
   <!-- Main JS -->
