@@ -1,32 +1,29 @@
 <?php
 include 'koneksi.php';
 
-// fungsi tombol preview
+// fungsi tombol preview file
 function filePreview($nama_media, $file) {
   if (!$file) {
     return "<span class='text-muted'>Tidak ada file</span>";
   }
 
-  $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-
-  // ganti spasi dengan underscore biar cocok sama folder aslinya
+  $ext    = strtolower(pathinfo($file, PATHINFO_EXTENSION));
   $folder = str_replace(" ", "_", $nama_media);
+  $path   = "File_Media/" . $folder . "/" . $file;
 
-  // path ke folder File_Media/[nama_media]
-  $path = "File_Media/" . $folder . "/" . $file;
-
-  if (in_array($ext, ['jpg','jpeg','png','gif','pdf'])) {
-    return "<a href='$path' class='glightbox btn btn-outline-primary btn-sm'>
-              <i class='bi bi-eye'></i>
-            </a>";
+  if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'pdf'])) {
+    return "
+      <a href='$path' class='glightbox btn btn-outline-primary btn-sm'>
+        <i class='bi bi-eye'></i>
+      </a>";
   } else {
-    return "<a href='$path' target='_blank' class='btn btn-outline-secondary btn-sm'>
-              <i class='bi bi-download'></i>
-            </a>";
+    return "
+      <a href='$path' target='_blank' class='btn btn-outline-secondary btn-sm'>
+        <i class='bi bi-download'></i>
+      </a>";
   }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,48 +32,28 @@ function filePreview($nama_media, $file) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>SISTEM INFORMASI HUMAS PROTOKOL</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
 
-  <!-- Favicons -->
+  <!-- Favicon -->
   <link href="assets/img/favicon.jpg" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
+  <!-- Vendor CSS -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Dewi
-  * Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 </head>
 
 <body class="service-details-page">
 
+  <!-- HEADER -->
   <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
+    <div class="container-fluid container-xl d-flex align-items-center">
       <a href="index.php" class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">HUMAS PROTOKOL</h1>
       </a>
-
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#home" class="active">Home</a></li>
@@ -87,30 +64,35 @@ function filePreview($nama_media, $file) {
     </div>
   </header>
 
+  <!-- MAIN -->
   <main class="main">
 
-    <!-- Page Title -->
-    <div id="home" class="page-title dark-background" data-aos="fade" style="background-image: url(assets/img/hero-bg.png);">
+    <!-- PAGE TITLE -->
+    <div id="home" class="page-title dark-background" style="background-image: url(assets/img/hero-bg.png);">
       <div class="container position-relative">
-        <h1>FORMULIR PENGAJUAN MEDIA</h1>
-        <p></p>
+        <h1>REKAP DATA MEDIA</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.php">Home</a></li>
-            <li class="current">Formulir Media</li>
+            <li class="current">Rekap Media</li>
           </ol>
         </nav>
       </div>
-    </div><!-- End Page Title -->
+    </div>
 
-    <!-- Rekap Section -->
+    <!-- REKAP SECTION -->
     <section id="rekap" class="contact section">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="container">
+
+        <!-- ================== TABEL PERBAIKAN ================== -->
         <h3>TABEL PERBAIKAN</h3>
-        <div class="box-body">
-          <div style="overflow-x:auto;">
-            <table id="tabel2" class="table table-bordered table-hover">
-              <thead class="table-dark">
+        <button id="btnExportPerbaikan" class="btn btn-success mb-2">
+          <i class="bi bi-file-earmark-excel"></i> Export ke Excel
+        </button>
+
+        <div style="overflow-x:auto;">
+          <table id="tabel_perbaikan" class="table table-bordered table-hover">
+            <thead class="table-dark">
               <tr>
                 <th>No</th>
                 <th>Tanggal Pengajuan</th>
@@ -130,58 +112,53 @@ function filePreview($nama_media, $file) {
                 <th>Status</th>
                 <th colspan="2">Aksi</th>
               </tr>
-              </thead>
-              <tbody>
-                <?php
-                  include 'koneksi.php';
-                  $no = 1;
-                  $data = mysqli_query($koneksi , "select * from media where status = 'Kesempatan Edit'");
-                  while ($d = mysqli_fetch_array($data)){
-                    ?>
-                    <tr>
-                      <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['tanggal']; ?></td>
-                      <td><?php echo $d['nama_media']; ?></td>
-                      <td><?php echo $d['nama_perusahaan']; ?></td>
-                      <td><?php echo $d['pengajuan_langganan']; ?></td>
-                      <td><?php echo $d['nama_wartawan']; ?></td>
-                      <td><?= "Rp " . number_format($d['harga'], 0, ',', '.'); ?></td>
-                      <td><?php echo $d['kontak']; ?></td>
-                      <td><?php echo $d['nomor_rekening']; ?></td>
-                      <!-- tombol preview -->
-                      <td><?php echo filePreview($d['nama_media'], $d['ktp_pemilik_perusahaan']); ?></td>
-                      <td><?php echo filePreview($d['nama_media'], $d['npwp_perusahaan']); ?></td>
-                      <td><?php echo filePreview($d['nama_media'], $d['kta_wartawan']); ?></td>
-                      <td><?php echo filePreview($d['nama_media'], $d['cv_perusahaan']); ?></td>
-                      <td><?php echo filePreview($d['nama_media'], $d['surat_penawaran_kerjasama']); ?></td>
-                      <td><?php echo $d['keterangan']; ?></td>
-                      <td><?php echo $d['status']; ?></td>
-                      <td><a href="form_edit.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>"><button class="btn btn-warning">EDIT DATA</button></td>
-                      <td><input type="button" class="btn btn-success" name="Kirim" value="KIRIM DATA" onclick="location.href='status_menunggu.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>'"></input></td>
-                    </tr>
-                    <?php
-                  }
-                    ?>
-              </tbody>
-            </table>
-          </div>
+            </thead>
+            <tbody>
+              <?php
+              $no   = 1;
+              $data = mysqli_query($koneksi, "SELECT * FROM media WHERE status = 'Kesempatan Edit'");
+              while ($d = mysqli_fetch_array($data)) {
+              ?>
+                <tr>
+                  <td><?= $no++; ?></td>
+                  <td><?= $d['tanggal']; ?></td>
+                  <td><?= $d['nama_media']; ?></td>
+                  <td><?= $d['nama_perusahaan']; ?></td>
+                  <td><?= $d['pengajuan_langganan']; ?></td>
+                  <td><?= $d['nama_wartawan']; ?></td>
+                  <td><?= "Rp " . number_format($d['harga'], 0, ',', '.'); ?></td>
+                  <td><?= $d['kontak']; ?></td>
+                  <td><?= $d['nomor_rekening']; ?></td>
+                  <td><?= filePreview($d['nama_media'], $d['ktp_pemilik_perusahaan']); ?></td>
+                  <td><?= filePreview($d['nama_media'], $d['npwp_perusahaan']); ?></td>
+                  <td><?= filePreview($d['nama_media'], $d['kta_wartawan']); ?></td>
+                  <td><?= filePreview($d['nama_media'], $d['cv_perusahaan']); ?></td>
+                  <td><?= filePreview($d['nama_media'], $d['surat_penawaran_kerjasama']); ?></td>
+                  <td><?= $d['keterangan']; ?></td>
+                  <td><?= $d['status']; ?></td>
+                  <td>
+                    <a href="form_edit.php?id_pengajuan=<?= $d['id_pengajuan']; ?>" class="btn btn-warning btn-sm">EDIT</a>
+                  </td>
+                  <td>
+                    <a href="status_menunggu.php?id_pengajuan=<?= $d['id_pengajuan']; ?>" class="btn btn-success btn-sm">KIRIM</a>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
         </div>
 
-        <br>
-        <br>
-        <br>
-        <br>
+        <br><br>
 
-        <div class="box-body">
-          <div class="box-header with-border d-flex justify-content-between align-items-center">
-            <h3 class="box-title">Tabel Hasil Persetujuan</h3>
-              <button id="btnExport" class="btn btn-success">
-                <i class="bi bi-file-earmark-excel"></i> Export ke Excel
-              </button>
-          </div>
-          <div style="overflow-x:auto;">
-            <table id="tabel2" class="table table-bordered table-hover">
-              <thead class="table-dark">
+        <!-- ================== TABEL PERSETUJUAN ================== -->
+        <h3>TABEL HASIL PERSETUJUAN</h3>
+        <button id="btnExportPersetujuan" class="btn btn-success mb-2">
+          <i class="bi bi-file-earmark-excel"></i> Export ke Excel
+        </button>
+
+        <div style="overflow-x:auto;">
+          <table id="tabel_persetujuan" class="table table-bordered table-hover">
+            <thead class="table-dark">
               <tr>
                 <th>No</th>
                 <th>Tanggal Pengajuan</th>
@@ -201,54 +178,48 @@ function filePreview($nama_media, $file) {
                 <th>Status</th>
                 <th>Aksi</th>
               </tr>
-              </thead>
-              <tbody>
-                <?php
-                  include 'koneksi.php';
-                  $no = 1;
-                  $data = mysqli_query($koneksi , "select * from media where status='Disetujui' or status='Tidak Disetujui'");
-                  while ($d = mysqli_fetch_array($data)){
-                    ?>
-                    <tr>
-                      <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['tanggal']; ?></td>
-                      <td><?php echo $d['nama_media']; ?></td>
-                      <td><?php echo $d['nama_perusahaan']; ?></td>
-                      <td><?php echo $d['pengajuan_langganan']; ?></td>
-                      <td><?php echo $d['nama_wartawan']; ?></td>
-                      <td><?= "Rp " . number_format($d['harga'], 0, ',', '.'); ?></td>
-                      <td><?php echo $d['kontak']; ?></td>
-                      <td><?php echo $d['nomor_rekening']; ?></td>
-                      <!-- tombol preview -->
-                      <td><?php echo filePreview($d['nama_media'], $d['ktp_pemilik_perusahaan']); ?></td>
-                      <td><?php echo filePreview($d['nama_media'], $d['npwp_perusahaan']); ?></td>
-                      <td><?php echo filePreview($d['nama_media'], $d['kta_wartawan']); ?></td>
-                      <td><?php echo filePreview($d['nama_media'], $d['cv_perusahaan']); ?></td>
-                      <td><?php echo filePreview($d['nama_media'], $d['surat_penawaran_kerjasama']); ?></td>
-                      <td><?php echo $d['keterangan']; ?></td>
-                      <td><?php echo $d['status']; ?></td>
-                      <td>
-                        <a href="delete_media.php?id_pengajuan=<?php echo $d['id_pengajuan']; ?>" 
-                          onclick="return confirm('Yakin ingin menghapus data ini?');" 
-                          class="btn btn-danger btn-sm">
-                          <i class="bi bi-trash"></i> Delete
-                        </a>
-                      </td>
-                    </tr>
-                    <?php
-                  }
-                    ?>
-              </tbody>
-            </table>
-          </div>
+            </thead>
+            <tbody>
+              <?php
+              $no   = 1;
+              $data = mysqli_query($koneksi, "SELECT * FROM media WHERE status='Disetujui' OR status='Tidak Disetujui'");
+              while ($d = mysqli_fetch_array($data)) {
+              ?>
+                <tr>
+                  <td><?= $no++; ?></td>
+                  <td><?= $d['tanggal']; ?></td>
+                  <td><?= $d['nama_media']; ?></td>
+                  <td><?= $d['nama_perusahaan']; ?></td>
+                  <td><?= $d['pengajuan_langganan']; ?></td>
+                  <td><?= $d['nama_wartawan']; ?></td>
+                  <td><?= "Rp " . number_format($d['harga'], 0, ',', '.'); ?></td>
+                  <td><?= $d['kontak']; ?></td>
+                  <td><?= $d['nomor_rekening']; ?></td>
+                  <td><?= filePreview($d['nama_media'], $d['ktp_pemilik_perusahaan']); ?></td>
+                  <td><?= filePreview($d['nama_media'], $d['npwp_perusahaan']); ?></td>
+                  <td><?= filePreview($d['nama_media'], $d['kta_wartawan']); ?></td>
+                  <td><?= filePreview($d['nama_media'], $d['cv_perusahaan']); ?></td>
+                  <td><?= filePreview($d['nama_media'], $d['surat_penawaran_kerjasama']); ?></td>
+                  <td><?= $d['keterangan']; ?></td>
+                  <td><?= $d['status']; ?></td>
+                  <td>
+                    <a href="delete_media.php?id_pengajuan=<?= $d['id_pengajuan']; ?>"
+                       onclick="return confirm('Yakin ingin menghapus data ini?');"
+                       class="btn btn-danger btn-sm">
+                      <i class="bi bi-trash"></i> Delete
+                    </a>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
         </div>
 
       </div>
-
-    </section> <!-- Dnd Rekap Section -->
-
+    </section>
   </main>
 
+  <!-- Footer -->
   <footer id="footer" class="footer dark-background">
     <div class="container footer-top">
       <div class="row gy-4">
@@ -283,139 +254,118 @@ function filePreview($nama_media, $file) {
     </div>
   </footer>
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
+  <!-- Vendor JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-  <!-- Inisialisasi GLightbox -->
-  <script>
-    const lightbox = GLightbox({ selector: '.glightbox' });
-  </script>
-  <!-- DataTables CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<!-- DataTables JS -->
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
-
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree();
-
-    // aktifkan datatable2
-    $('#tabel2').DataTable({
-      "paging": true,        // ada pagination
-      "ordering": true,      // bisa sorting
-      "info": true,          // info jumlah data
-      "order": [[0, "asc"]], // default urutkan kolom pertama (No) ASC
-      columnDefs: [
-        { orderable: true, targets: [0, 1, 2, 5, 6, 7] },   // kolom yang bisa sort
-        { orderable: false, targets: '_all' }                // sisanya tidak bisa sort
-      ],
-      "language": {
-        "search": "Cari:",
-        "lengthMenu": "Tampilkan _MENU_ data per halaman",
-        "zeroRecords": "Data tidak ditemukan",
-        "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
-        "infoEmpty": "Tidak ada data tersedia",
-        "infoFiltered": "(difilter dari _MAX_ total data)"
-      }
-    });
-  });
-
-</script>
-<!-- Export Excel (ExcelJS + FileSaver) -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
   <script>
-    document.getElementById("btnExport").addEventListener("click", function () {
-      var workbook = new ExcelJS.Workbook();
-      var worksheet = workbook.addWorksheet("Rekap Data");
+    const lightbox = GLightbox({ selector: '.glightbox' });
 
-      // ambil tabel HTML
-      var tabel = document.getElementById("tabel2");
+    // DataTables
+    $(document).ready(function () {
+      $('#tabel_perbaikan, #tabel_persetujuan').DataTable({
+        paging: true,
+        ordering: true,
+        info: true,
+        order: [[0, "asc"]],
+        columnDefs: [
+          { orderable: true, targets: [0, 1, 2, 3, 4, 5, 6] },
+          { orderable: false, targets: '_all' }
+        ],
+        language: {
+          search: "Cari:",
+          lengthMenu: "Tampilkan _MENU_ data per halaman",
+          zeroRecords: "Data tidak ditemukan",
+          info: "Menampilkan halaman _PAGE_ dari _PAGES_",
+          infoEmpty: "Tidak ada data tersedia",
+          infoFiltered: "(difilter dari _MAX_ total data)"
+        }
+      });
+    });
+
+    // Export Excel
+    function exportTableToExcel(tableId, filenamePrefix) {
+      var workbook = new ExcelJS.Workbook();
+      var worksheet = workbook.addWorksheet("Sheet1");
+
+      var tabel = document.getElementById(tableId);
       var rows = tabel.querySelectorAll("tr");
 
       rows.forEach((row, rowIndex) => {
         let cells = row.querySelectorAll("th, td");
         let rowData = [];
         cells.forEach((cell) => {
-          rowData.push(cell.innerText);
+          rowData.push(cell.innerText.trim());
         });
         worksheet.addRow(rowData);
 
-        // styling header
+        // style header
         if (rowIndex === 0) {
           cells.forEach((cell, colIndex) => {
-            let excelCell = worksheet.getRow(1).getCell(colIndex+1);
+            let excelCell = worksheet.getRow(1).getCell(colIndex + 1);
             excelCell.font = { bold: true };
-            excelCell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FFD9D9D9" } };
-            excelCell.border = {
-              top: {style:'thin'},
-              left: {style:'thin'},
-              bottom: {style:'thin'},
-              right: {style:'thin'}
+            excelCell.fill = {
+              type: "pattern",
+              pattern: "solid",
+              fgColor: { argb: "FFD9D9D9" }
             };
           });
         }
       });
 
-      // kasih border semua cell
-      worksheet.eachRow(function(row) {
-        row.eachCell(function(cell) {
+      // border
+      worksheet.eachRow(function (row) {
+        row.eachCell(function (cell) {
           cell.border = {
-            top: {style:'thin'},
-            left: {style:'thin'},
-            bottom: {style:'thin'},
-            right: {style:'thin'}
+            top: { style: 'thin' },
+            left: { style: 'thin' },
+            bottom: { style: 'thin' },
+            right: { style: 'thin' }
           };
         });
       });
 
-      // auto width kolom
+      // auto width
       worksheet.columns.forEach(function (column) {
         let maxLength = 0;
         column.eachCell({ includeEmpty: true }, function (cell) {
           let columnLength = cell.value ? cell.value.toString().length : 10;
-          if (columnLength > maxLength ) {
+          if (columnLength > maxLength) {
             maxLength = columnLength;
           }
         });
         column.width = maxLength < 10 ? 10 : maxLength + 2;
       });
 
-      // simpan files
       workbook.xlsx.writeBuffer().then(function (data) {
-        var blob = new Blob([data], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+        var blob = new Blob(
+          [data],
+          { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }
+        );
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
         let mm = String(today.getMonth() + 1).padStart(2, '0');
         let yyyy = today.getFullYear();
-
-        let filename = "Rekap_Hasil_Pengajuan_" + dd + "-" + mm + "-" + yyyy + ".xlsx";
+        let filename = filenamePrefix + "_" + dd + "-" + mm + "-" + yyyy + ".xlsx";
         saveAs(blob, filename);
       });
-    });
+    }
+
+    // Tombol export
+    document.getElementById("btnExportPerbaikan")
+      .addEventListener("click", function () {
+        exportTableToExcel("tabel_perbaikan", "Rekap_Tabel_Perbaikan");
+      });
+
+    document.getElementById("btnExportPersetujuan")
+      .addEventListener("click", function () {
+        exportTableToExcel("tabel_persetujuan", "Rekap_Tabel_Persetujuan");
+      });
   </script>
 
 </body>
-
 </html>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2025 at 12:34 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Waktu pembuatan: 15 Sep 2025 pada 05.34
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -35,18 +35,10 @@ CREATE TABLE `admin` (
   `no_hp` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `no_hp`) VALUES
-(1, 'Muhammad Fajar', 'fajar@gmail.com', 'fajar123', '089741021'),
-(3, 'Asep Sumenep', 'SumenepAsep@gmail.com', 'admin1234', '0812345678');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bulanan`
+-- Struktur dari tabel `bulanan`
 --
 
 CREATE TABLE `bulanan` (
@@ -59,18 +51,10 @@ CREATE TABLE `bulanan` (
   `triwulan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `bulanan`
---
-
-INSERT INTO `bulanan` (`id_bulanan`, `id_harian`, `bulan`, `jml_hari`, `eksemplar`, `perbulan`, `triwulan`) VALUES
-(3, 3, 'Agustus', 31, 0, '0', '0'),
-(4, 10, 'Agustus', 31, 20, '18600000', '55800000');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `harian`
+-- Struktur dari tabel `harian`
 --
 
 CREATE TABLE `harian` (
@@ -82,27 +66,10 @@ CREATE TABLE `harian` (
   `tanggal` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `harian`
---
-
-INSERT INTO `harian` (`id_harian`, `id_pengajuan`, `nama_media`, `harga`, `eksemplar`, `tanggal`) VALUES
-(2, 6, 'Pangsit Media', '30000', 0, '2025-08-31 08:58:00'),
-(3, 7, 'Mie Ayam Hitam', '10000', 0, '2025-08-29 08:59:00'),
-(7, 5, 'Awikwok Media', '15000', 51, '2025-08-31 09:01:00'),
-(9, 5, 'Awikwok Media', '15000', 20, '2025-08-31 12:53:00'),
-(10, 6, 'Pangsit Media', '30000', 20, '2025-08-31 13:00:00'),
-(11, 5, 'Awikwok Media', '15000', 300, '2025-08-31 13:51:00'),
-(12, 5, 'Awikwok Media', '15000', 100, '2025-08-01 13:53:00'),
-(13, 5, 'Awikwok Media', '15000', 20, '2025-08-29 13:54:00'),
-(14, 6, 'Pangsit Media', '30000', 30, '2025-08-31 13:59:00'),
-(15, 6, 'Pangsit Media', '30000', 50, '2025-08-20 14:00:00'),
-(16, 5, 'Awikwok Media', '15000', 30, '2025-09-01 14:21:00');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media`
+-- Struktur dari tabel `media`
 --
 
 CREATE TABLE `media` (
@@ -124,25 +91,10 @@ CREATE TABLE `media` (
   `status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `media`
---
-
-INSERT INTO `media` (`id_pengajuan`, `nama_media`, `nama_perusahaan`, `pengajuan_langganan`, `nama_wartawan`, `harga`, `kontak`, `nomor_rekening`, `tanggal`, `ktp_pemilik_perusahaan`, `npwp_perusahaan`, `kta_wartawan`, `cv_perusahaan`, `surat_penawaran_kerjasama`, `keterangan`, `status`) VALUES
-(5, 'Awikwok Media', 'PT Aaowkoawk sejahtera', 'Majalah', 'Ujang Markonah', '15000', '08123456789', '12345678', '2025-08-31 16:09:17', '1756275545_doraemonPNG.png', '1756275545_dprd test JPEG.jpeg', '1756275545_dprd test JPEG 3.jpeg', '1756275545_dprd test JPEG 2.jpeg', '1756275545_PROPOSAL KERJA PRAKTIK.pdf', 'Ipsum lorem ipsum lore ini hanya sebuah keterangan untuk pengetest an', 'Tidak Disetujui'),
-(6, 'Pangsit Media', 'Pangsit Enjoyer Corporation', 'Majalah', 'Mamat Sumamat', '30000', '0812345678', '12345678', '2025-08-31 16:09:17', '1756353665_doraemonPNG.png', '1756353665_dprd test JPEG.jpeg', '1756353665_dprd test JPEG 2.jpeg', '1756353665_dprd test JPEG 3.jpeg', '1756353665_Tugas Penyerta Pertemuan 8 SP Metnum_2250081160_M Naufal Faza Utomo.pdf', 'Iki buat ngetest su\r\n', 'Disetujui'),
-(7, 'Mie Ayam Hitam', 'Ayam Hitam legam corp.', 'MediaOnline', 'Usep Sukasep', '10000', '08123456789', '12345678', '2025-08-31 16:09:17', '1756353775_omah.jpeg', '1756353775_Tugas SP Metnum 2_2250081160_M Naufal Faza Utomo.jpg', '1756353775_dprd test JPEG 3.jpeg', '1756353775_doraemonPNG.png', '1756353775_MODUL TEORI GAME 2025 UNITY 3D.pdf', 'Test lagiiiiiii', 'Disetujui'),
-(8, 'Kratos Video', 'GOW Corp.', 'Majalah', 'Atrius', '30000', '08123456789', '12345678', '2025-08-31 16:09:17', NULL, NULL, NULL, NULL, NULL, '', 'Disetujui'),
-(9, 'Markonang Media', 'PT Hitam Abadi', 'BeritaOnline', 'Ipin Aripin', '20000', '08123456789', '12345678', '2025-08-31 16:09:17', NULL, NULL, NULL, NULL, NULL, 'r', 'Menunggu Persetujuan'),
-(10, 'Arab Media', 'Arabian Corp', 'Majalah', 'Uceng', '25000', '08123456', '12345678', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL, NULL, '12', 'Kesempatan Edit'),
-(11, 'adasda', 'asdasd', 'Tabloid', 'asdasd', '25000', '08123456', '123123', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL, NULL, '11', 'Kesempatan Edit'),
-(12, 'rewew', 'wewqe', 'Tabloid', 'qweqwe', '25000', '08123456', '12345678', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL, NULL, '', 'Kesempatan Edit'),
-(13, 'ser', 'sadaasdasdsd', 'Majalah', 'Aseps', '15000', '08123456', '12345678', '2025-08-31 16:26:00', NULL, NULL, NULL, NULL, NULL, '', 'Disetujui');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supadmin`
+-- Struktur dari tabel `supadmin`
 --
 
 CREATE TABLE `supadmin` (
@@ -154,94 +106,87 @@ CREATE TABLE `supadmin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `supadmin`
---
-
-INSERT INTO `supadmin` (`id_supadmin`, `nama`, `email`, `password`, `no_hp`) VALUES
-(1, 'Mamank Asep', 'asepsuresep@gmail.com', 'admin1234', '08123456789'),
-(2, 'Ucok Jamet', 'ucok@gmail.com', 'ucok123', '0897382052');
-
---
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `bulanan`
+-- Indeks untuk tabel `bulanan`
 --
 ALTER TABLE `bulanan`
   ADD PRIMARY KEY (`id_bulanan`),
   ADD UNIQUE KEY `id_harian` (`id_harian`);
 
 --
--- Indexes for table `harian`
+-- Indeks untuk tabel `harian`
 --
 ALTER TABLE `harian`
-  ADD PRIMARY KEY (`id_harian`);
+  ADD PRIMARY KEY (`id_harian`),
+  ADD KEY `harian_ibfk_1` (`id_pengajuan`);
 
 --
--- Indexes for table `media`
+-- Indeks untuk tabel `media`
 --
 ALTER TABLE `media`
   ADD PRIMARY KEY (`id_pengajuan`);
 
 --
--- Indexes for table `supadmin`
+-- Indeks untuk tabel `supadmin`
 --
 ALTER TABLE `supadmin`
   ADD PRIMARY KEY (`id_supadmin`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `bulanan`
+-- AUTO_INCREMENT untuk tabel `bulanan`
 --
 ALTER TABLE `bulanan`
   MODIFY `id_bulanan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `harian`
+-- AUTO_INCREMENT untuk tabel `harian`
 --
 ALTER TABLE `harian`
-  MODIFY `id_harian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_harian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `media`
+-- AUTO_INCREMENT untuk tabel `media`
 --
 ALTER TABLE `media`
-  MODIFY `id_pengajuan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_pengajuan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `supadmin`
+-- AUTO_INCREMENT untuk tabel `supadmin`
 --
 ALTER TABLE `supadmin`
-  MODIFY `id_supadmin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_supadmin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `bulanan`
+-- Ketidakleluasaan untuk tabel `bulanan`
 --
 ALTER TABLE `bulanan`
   ADD CONSTRAINT `bulanan_ibfk_1` FOREIGN KEY (`id_harian`) REFERENCES `harian` (`id_harian`);
 
 --
--- Constraints for table `harian`
+-- Ketidakleluasaan untuk tabel `harian`
 --
 ALTER TABLE `harian`
   ADD CONSTRAINT `harian_ibfk_1` FOREIGN KEY (`id_pengajuan`) REFERENCES `media` (`id_pengajuan`);
